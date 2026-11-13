@@ -15,9 +15,35 @@ selected first lesson for Grade 2; the demo covers this one lesson.
 - **Combined demo:** create a student profile first, then use the student's
   personality and profile to customize teaching and interaction.
 
-The two parts are developed separately. This repository currently contains the
-tutoring/reasoning work; the personality/profile component has not been integrated.
-The shared profile format and integration flow remain to be agreed together.
+The two parts are developed separately. This repository now includes
+[Learning Strength Discovery](app/README.md), an interactive learning-habit
+profile for grades 5–8. Students review and correct their profile before it
+produces a versioned [teaching handoff](app/INTEGRATION.md). The existing tutor
+does not yet consume that export. The current grade 5–8 assessment must not be
+presented as validated for the grade 2 lesson or other age groups.
+
+## Run Learning Strength Discovery
+
+Use Node.js 24. From the repository root:
+
+```sh
+npm ci --prefix app
+npm run discovery:dev
+```
+
+Open [the Discovery app](http://127.0.0.1:5173/). It needs no API key. The journey
+includes short reflections, three interactive activities, an eight-area profile,
+student corrections, and a chosen trial routine. Optional browser remembering
+starts off. Save a JSON copy after profile review to obtain the teaching export.
+See the [assessment materials](learning_strength_discovery/README.md).
+
+```sh
+npm run discovery:build
+npm run discovery:test
+npm run discovery:test:browser
+```
+
+The tutor commands and checkpoint below retain their existing scope.
 
 The existing page is an early prototype, not the approved tutor. It uses browser
 speech recognition when available and allows transcript editing before submission.
@@ -66,7 +92,8 @@ For collaboration, pull the latest `main`, make changes on a separate branch,
 and open a pull request. Local `.env` credentials and generated probe audio are
 excluded from Git; use `.env.example` for configuration names.
 
-There are no runtime dependencies. Playwright is a development-only dependency
+The tutoring core has no runtime dependencies. Discovery has its own locked
+dependencies under `app/`. Playwright is a development-only dependency
 for the later browser phase; a full tutor browser suite does not exist yet.
 
 ## Run the demo

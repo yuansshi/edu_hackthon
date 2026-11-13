@@ -22,3 +22,14 @@
   mocked behavior, skipped checks, and failures caused by missing access.
 - Never claim deployment, live API success, skill discovery, or product readiness
   based only on file existence or a successful scaffold check.
+
+## Learning Strength Discovery track
+
+Install its locked dependencies with `npm ci --prefix app`. Run
+`npm run discovery:build`, `npm run discovery:test`, and
+`npm run discovery:test:browser` (Chromium installed). Exercise reflections,
+all three activities, profile corrections and review invalidation, trial choices,
+opt-in persistence, clear, and text/JSON export in a real browser. Check desktop
+and small-screen layouts and keyboard access. This original grades 5–8 pilot and
+reviewed profile export are separate from math mastery and the existing grade 2
+tutor. No external model call or automatic tutor adaptation is implied.

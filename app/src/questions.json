@@ -1,0 +1,1305 @@
+[
+  {
+    "id": "LDS-Q01",
+    "dimension": "personality",
+    "section": "Learning habits",
+    "prompt": "I wanted to find out more about something new.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q02",
+    "dimension": "personality",
+    "section": "Learning habits",
+    "prompt": "I liked having my learning materials and steps in order.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q03",
+    "dimension": "personality",
+    "section": "Learning habits",
+    "prompt": "I wanted to talk with other people while learning.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q04",
+    "dimension": "personality",
+    "section": "Learning habits",
+    "prompt": "When learning with others, I wanted us to listen to each other's ideas.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q05",
+    "dimension": "personality",
+    "section": "Learning habits",
+    "prompt": "When learning felt stressful, it was hard for me to think clearly.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q06",
+    "dimension": "focus",
+    "section": "Learning habits",
+    "prompt": "While learning, my attention moved away from what I meant to do.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q07",
+    "dimension": "focus",
+    "section": "Focus and support",
+    "prompt": "Think of a time you could focus. Which conditions helped?",
+    "context": "Think about the past 14 days. Choose up to two conditions that helped, or choose one of the last three answers on its own.",
+    "kind": "multi",
+    "maxChoices": 2,
+    "options": [
+      {
+        "value": "quiet",
+        "label": "A quiet place",
+        "exclusive": false
+      },
+      {
+        "value": "background-sound",
+        "label": "A little background sound",
+        "exclusive": false
+      },
+      {
+        "value": "fewer-visual-distractions",
+        "label": "Fewer things to look at around me",
+        "exclusive": false
+      },
+      {
+        "value": "room-to-move",
+        "label": "Room to move or change position",
+        "exclusive": false
+      },
+      {
+        "value": "next-small-step",
+        "label": "Knowing the next small step",
+        "exclusive": false
+      },
+      {
+        "value": "nearby-check-in",
+        "label": "Someone nearby to check in with",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another condition",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends on the situation",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-opportunity",
+        "label": "I did not have a chance to notice",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q08",
+    "dimension": "focus",
+    "section": "Focus and support",
+    "prompt": "If your attention moved away, what helped you return?",
+    "context": "Think about the past 14 days. Choose up to two ways that helped. Choose an answer saying no way helped, Depends, Not sure, or no chance to notice on its own.",
+    "kind": "multi",
+    "maxChoices": 2,
+    "options": [
+      {
+        "value": "review-next-step",
+        "label": "Looking at the next step again",
+        "exclusive": false
+      },
+      {
+        "value": "short-break",
+        "label": "Taking a short break",
+        "exclusive": false
+      },
+      {
+        "value": "move-or-stretch",
+        "label": "Moving or stretching",
+        "exclusive": false
+      },
+      {
+        "value": "quiet-reminder",
+        "label": "A quiet reminder from someone",
+        "exclusive": false
+      },
+      {
+        "value": "own-words",
+        "label": "Saying what I was doing in my own words",
+        "exclusive": false
+      },
+      {
+        "value": "away-from-distraction",
+        "label": "Moving away from a distraction",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another way",
+        "exclusive": false
+      },
+      {
+        "value": "nothing-helped",
+        "label": "I did not find a helpful way yet",
+        "exclusive": true
+      },
+      {
+        "value": "depends",
+        "label": "Depends on the situation",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-opportunity",
+        "label": "This did not happen or I did not have a chance to notice",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q09",
+    "dimension": "pace",
+    "section": "Focus and support",
+    "prompt": "Imagine you are starting a new, short learning activity today. How would you like to set the pace?",
+    "context": "This is a choice for the next activity you try, not a report about the past 14 days. Choose one to try first.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "one-small-part",
+        "label": "Give me one small part, then let me ask for the next.",
+        "exclusive": false
+      },
+      {
+        "value": "whole-activity",
+        "label": "Show me the whole activity so I can set my own pace.",
+        "exclusive": false
+      },
+      {
+        "value": "extra-thinking-time",
+        "label": "Let me have extra thinking time before I answer.",
+        "exclusive": false
+      },
+      {
+        "value": "choose-as-i-go",
+        "label": "Let me choose the pace as I go.",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends on the activity",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q10",
+    "dimension": "pace",
+    "section": "Focus and support",
+    "prompt": "For that new activity, what would you like available?",
+    "context": "This is a choice for the next activity you try, not a report about the past 14 days. Choose up to two supports to try first. Choose Try first, Depends, or Not sure on its own.",
+    "kind": "multi",
+    "maxChoices": 2,
+    "options": [
+      {
+        "value": "visible-steps",
+        "label": "Short written steps I can look at again",
+        "exclusive": false
+      },
+      {
+        "value": "read-aloud",
+        "label": "Steps read aloud; I can ask to hear them again",
+        "exclusive": false
+      },
+      {
+        "value": "worked-example",
+        "label": "One worked example",
+        "exclusive": false
+      },
+      {
+        "value": "drawing-of-steps",
+        "label": "A simple drawing or layout of the steps",
+        "exclusive": false
+      },
+      {
+        "value": "say-directions-back",
+        "label": "A chance to say the directions back and check them",
+        "exclusive": false
+      },
+      {
+        "value": "try-first",
+        "label": "Let me try first; I will ask if I want something else.",
+        "exclusive": true
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends on the activity",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q11",
+    "dimension": "motivation",
+    "section": "Reasons for effort",
+    "prompt": "I enjoyed doing it.",
+    "context": "Think about the past 14 days. How often was this a reason you put effort into learning? More than one reason can fit across these questions.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q12",
+    "dimension": "motivation",
+    "section": "Reasons for effort",
+    "prompt": "It could help me do something I care about.",
+    "context": "Think about the past 14 days. How often was this a reason you put effort into learning? More than one reason can fit across these questions.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q13",
+    "dimension": "motivation",
+    "section": "Reasons for effort",
+    "prompt": "I wanted to improve or reach a goal I set.",
+    "context": "Think about the past 14 days. How often was this a reason you put effort into learning? More than one reason can fit across these questions.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q14",
+    "dimension": "motivation",
+    "section": "Reasons for effort",
+    "prompt": "I wanted someone to notice my effort or work.",
+    "context": "Think about the past 14 days. How often was this a reason you put effort into learning? More than one reason can fit across these questions.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q15",
+    "dimension": "motivation",
+    "section": "Reasons for effort",
+    "prompt": "I wanted to earn something extra, like points or a small reward.",
+    "context": "Think about the past 14 days. How often was this a reason you put effort into learning? More than one reason can fit across these questions.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q16",
+    "dimension": "motivation",
+    "section": "Reasons for effort",
+    "prompt": "I felt pushed to do it, even when I did not want to.",
+    "context": "Think about the past 14 days. How often was this a reason you put effort into learning? More than one reason can fit across these questions.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q17",
+    "dimension": "management",
+    "section": "Getting through a task",
+    "prompt": "When it was time to learn, I got started without many reminders.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q18",
+    "dimension": "management",
+    "section": "Getting through a task",
+    "prompt": "Before a task with several steps, I chose what to do first and next.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q19",
+    "dimension": "management",
+    "section": "Getting through a task",
+    "prompt": "When something distracted me, I used a way to return to the task.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q20",
+    "dimension": "management",
+    "section": "Getting through a task",
+    "prompt": "Before finishing, I checked whether my work matched the directions.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q21",
+    "dimension": "management",
+    "section": "Getting through a task",
+    "prompt": "When I needed help, I asked for it.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q22",
+    "dimension": "confidence",
+    "section": "Getting through a task",
+    "prompt": "When I met a new task, I thought, “I can learn how to do this.”",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q23",
+    "dimension": "confidence",
+    "section": "Getting through a task",
+    "prompt": "After a mistake, I tried another step or asked for help to continue.",
+    "context": "Think about the past 14 days, including learning in class, at home, or while learning a skill. Choose how often this happened on the chances you had.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "never",
+        "label": "Never or almost never",
+        "exclusive": false
+      },
+      {
+        "value": "sometimes",
+        "label": "Sometimes",
+        "exclusive": false
+      },
+      {
+        "value": "often",
+        "label": "Many times",
+        "exclusive": false
+      },
+      {
+        "value": "almost",
+        "label": "Almost every time",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      },
+      {
+        "value": "no-chance",
+        "label": "No chance to try",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q24-S",
+    "dimension": "interaction",
+    "section": "Working together",
+    "prompt": "How much of a plan would you like?",
+    "context": "Imagine learning with a tutor or teacher. This is a choice for next time, not a report about the past 14 days. Choose one answer to try first.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "clear-steps",
+        "label": "Clear steps to follow",
+        "exclusive": false
+      },
+      {
+        "value": "goal-with-choice",
+        "label": "A clear goal, with room to choose my steps",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q24-I",
+    "dimension": "interaction",
+    "section": "Working together",
+    "prompt": "How would you like to begin?",
+    "context": "Imagine learning with a tutor or teacher. This is a choice for next time, not a report about the past 14 days. Choose one answer to try first.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "own-then-check-in",
+        "label": "Try on my own, then have a check-in",
+        "exclusive": false
+      },
+      {
+        "value": "example-together",
+        "label": "Do one example together, then try on my own",
+        "exclusive": false
+      },
+      {
+        "value": "steps-together",
+        "label": "Work through the steps together for a while",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q24-C",
+    "dimension": "interaction",
+    "section": "Working together",
+    "prompt": "When would you like to talk about your ideas?",
+    "context": "Imagine learning with a tutor or teacher. This is a choice for next time, not a report about the past 14 days. Choose one answer to try first.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "talk-while-working",
+        "label": "Talk while I work",
+        "exclusive": false
+      },
+      {
+        "value": "talk-start-and-end",
+        "label": "Talk at the start and end; work quietly between",
+        "exclusive": false
+      },
+      {
+        "value": "quiet-first",
+        "label": "Think quietly first, then choose whether to talk",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q24-O",
+    "dimension": "interaction",
+    "section": "Working together",
+    "prompt": "How would you like to choose a learning activity?",
+    "context": "Imagine learning with a tutor or teacher. This is a choice for next time, not a report about the past 14 days. Choose one answer to try first.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "two-or-three-options",
+        "label": "Choose between two or three options",
+        "exclusive": false
+      },
+      {
+        "value": "adult-suggestion",
+        "label": "Hear the adult's suggestion, then agree or ask to change it",
+        "exclusive": false
+      },
+      {
+        "value": "suggest-my-own",
+        "label": "Suggest my own activity that meets the goal",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  },
+  {
+    "id": "LDS-Q24-F",
+    "dimension": "interaction",
+    "section": "Working together",
+    "prompt": "When would you like the adult to check in about your work?",
+    "context": "Imagine learning with a tutor or teacher. This is a choice for next time, not a report about the past 14 days. Choose one answer to try first.",
+    "kind": "single",
+    "maxChoices": 1,
+    "options": [
+      {
+        "value": "private-small-parts",
+        "label": "Privately, after each small part",
+        "exclusive": false
+      },
+      {
+        "value": "private-when-finished",
+        "label": "Privately, when I finish",
+        "exclusive": false
+      },
+      {
+        "value": "ask-for-check",
+        "label": "Let me ask when I want a check",
+        "exclusive": false
+      },
+      {
+        "value": "other",
+        "label": "Another choice",
+        "exclusive": false
+      },
+      {
+        "value": "depends",
+        "label": "Depends",
+        "exclusive": true
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure",
+        "exclusive": true
+      }
+    ]
+  }
+]
