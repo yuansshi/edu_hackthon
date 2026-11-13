@@ -12,7 +12,11 @@
     "check": "node scripts/check.mjs",
     "test": "node --test test/png.test.mjs test/learning.test.mjs test/assessment-adapter.test.mjs",
     "test:prototype": "node --test test/coach.test.mjs test/server.test.mjs",
-    "probe:audio": "node --use-system-ca scripts/live-probe.mjs"
+    "probe:audio": "node --use-system-ca scripts/live-probe.mjs",
+    "discovery:dev": "npm --prefix app run dev -- --port 5173",
+    "discovery:build": "npm --prefix app run build",
+    "discovery:test": "npm --prefix app test",
+    "discovery:test:browser": "npm --prefix app run test:browser"
   },
   "devDependencies": {
     "@playwright/test": "1.65.0"

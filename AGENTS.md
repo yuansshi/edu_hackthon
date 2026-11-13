@@ -19,6 +19,11 @@ in-memory core exists separately from the early browser prototype; HTTP/browser
 wiring and the approved OpenAI speech cascade are still pending. See the README
 for the current implementation checkpoint and actual verification commands.
 
+The separate [Learning Strength Discovery app](app/README.md) serves grades 5–8
+learning-habit profiling and exports a reviewed teaching profile. It has its own
+React/TypeScript build under `app/` and [integration boundary](app/INTEGRATION.md).
+Its descriptive results do not change the math lesson's evidence or mastery rules.
+
 Before changing files, read these project rules:
 
 - [Project scope and conventions](.agents/rules/project.md)

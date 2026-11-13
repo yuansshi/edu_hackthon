@@ -20,3 +20,6 @@ coverage/
 *.log
 .playwright-cli/
 .live-probe-*/
+
+# Local design candidates and browser verification artifacts
+.dev/
