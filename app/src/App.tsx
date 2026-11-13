@@ -45,9 +45,15 @@ import {
 } from './model';
 import type { Routine, Session } from './model';
 import { createTeachingProfile } from './handoff';
+import { LessonPreview } from './LessonPreview';
+import { createCombinedDemo } from './combinedDemo';
+import type { CombinedDemoKind } from './combinedDemo';
 import './App.css';
 import './App-pages.css';
 import './App-responsive.css';
+import './CombinedDemo.css';
+
+const combinedRehearsal = new URLSearchParams(window.location.search).get('demo') === 'combined';
 
 type Screen =
   | { kind: 'home' }
@@ -55,9 +61,13 @@ type Screen =
   | { kind: 'hub' }
   | { kind: 'activity'; id: ActivityId; returnToReport: boolean }
   | { kind: 'report' }
-  | { kind: 'routine' };
+  | { kind: 'routine' }
+  | { kind: 'lesson' };
 type Dialog = 'welcome' | 'pause' | 'about' | 'settings' | 'reset' | null;
 function loadInitial() {
+  if (combinedRehearsal) {
+    return { session: createSession(), notice: '' };
+  }
   try {
     return restoreSession(localStorage.getItem(STORAGE_KEY));
   } catch {
@@ -113,7 +123,7 @@ export default function App() {
   const answered = questions.filter((question) => hasResponse(session.answers[question.id])).length;
   const started = answered > 0 || session.activities.some((activity) => activity.status !== 'new');
   useEffect(() => {
-    if (!session.remember) return;
+    if (combinedRehearsal || !session.remember) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     } catch {
@@ -136,6 +146,10 @@ export default function App() {
     document.getElementById('screen-title')?.focus({ preventScroll: true });
   }, [screen.kind, screen.kind === 'questions' ? screen.index : null]);
   function remember(enabled: boolean) {
+    if (combinedRehearsal) {
+      setNotice('This rehearsal stays in memory. Your saved discovery visit is unchanged.');
+      return;
+    }
     if (!enabled) {
       try {
         localStorage.removeItem(STORAGE_KEY);
@@ -258,7 +272,7 @@ export default function App() {
   }
   function clearVisit() {
     try {
-      localStorage.removeItem(STORAGE_KEY);
+      if (!combinedRehearsal) localStorage.removeItem(STORAGE_KEY);
     } catch {
       setNotice(
         'This page was reset, but the browser blocked saved-data removal. Check browser site-data settings to remove an older visit.',
@@ -267,6 +281,34 @@ export default function App() {
     setSession(createSession());
     setScreen({ kind: 'home' });
     setDialog(null);
+  }
+  function loadExample(kind: CombinedDemoKind) {
+    const example = createCombinedDemo(kind);
+    setSession(example);
+    setNotice(
+      'Synthetic rehearsal: these prepared answers are editable; unanswered areas remain unknown.',
+    );
+    setDialog(null);
+    setScreen({
+      kind: 'questions',
+      index: Math.max(
+        0,
+        questions.findIndex((question) => hasResponse(example.answers[question.id])),
+      ),
+      returnToReport: true,
+    });
+  }
+  const lessonReady =
+    canUseRoutine(session) && session.routine.acceptedRevision === session.revision;
+  function openLesson() {
+    if (!lessonReady) {
+      setNotice(
+        'Review your current discoveries and confirm your arrangement before building a lesson.',
+      );
+      setScreen({ kind: 'report' });
+      return;
+    }
+    setScreen({ kind: 'lesson' });
   }
   const currentQuestion = screen.kind === 'questions' ? questions[screen.index] : undefined;
   const activeActivity =
@@ -336,6 +378,28 @@ export default function App() {
           )}
         </div>
       </header>
+      {combinedRehearsal && (
+        <section className="combined-rehearsal" aria-label="Combined rehearsal controls">
+          <div>
+            <strong>Smart Pants · combined preview</strong>
+            <p>Explore a real Discovery question, review the profile, then build a lesson.</p>
+            <small>
+              Synthetic Grade 5 examples · teacher-selected foundational math review · memory only
+            </small>
+          </div>
+          <div className="combined-rehearsal-actions">
+            <button className="btn btn-secondary" onClick={() => loadExample('guided')}>
+              Load Maya example
+            </button>
+            <button className="btn btn-secondary" onClick={() => loadExample('challenge')}>
+              Load Leo example
+            </button>
+            <button className="text-button" onClick={clearVisit}>
+              Start fresh
+            </button>
+          </div>
+        </section>
+      )}
       {notice && (
         <div className="notice" role="status">
           <span>{notice}</span>
@@ -430,8 +494,29 @@ export default function App() {
                 }));
             }}
             onExport={() => exportProfile('text')}
+            onLesson={openLesson}
           />
         )}
+        {screen.kind === 'lesson' &&
+          (lessonReady ? (
+            <LessonPreview
+              key={session.revision}
+              profile={createTeachingProfile(session)}
+              onBack={() => setScreen({ kind: 'routine' })}
+            />
+          ) : (
+            <section className="page-width">
+              <h1 id="screen-title" tabIndex={-1}>
+                Review the current profile first.
+              </h1>
+              <p>
+                Your choices changed. Review your discoveries and confirm your arrangement again.
+              </p>
+              <button className="btn btn-primary" onClick={() => setScreen({ kind: 'report' })}>
+                Review my discoveries
+              </button>
+            </section>
+          ))}
       </main>
       <footer className="site-footer">
         <span>
@@ -1076,12 +1161,14 @@ function RoutineView({
   onChange,
   onSave,
   onExport,
+  onLesson,
 }: {
   session: Session;
   onBack: () => void;
   onChange: (routine: Routine) => void;
   onSave: () => void;
   onExport: () => void;
+  onLesson: () => void;
 }) {
   const choice = session.routine.choices;
   const ready = canUseRoutine(session);
@@ -1268,7 +1355,7 @@ function RoutineView({
               </>
             )}
           </button>
-          {session.routine.acceptedRevision === session.revision && (
+          {ready && session.routine.acceptedRevision === session.revision && (
             <div className="routine-confirmation" role="status">
               <p>
                 Try it in your next learning session. Then ask: what helped, and what would I
@@ -1277,6 +1364,15 @@ function RoutineView({
               <button className="text-button" onClick={onExport}>
                 <Download size={17} /> Keep a copy
               </button>
+              <button
+                className="btn btn-primary full-width combined-lesson-launch"
+                onClick={onLesson}
+              >
+                Build my lesson <ArrowRight size={18} />
+              </button>
+              <p className="small-copy">
+                A customized interaction preview for a teacher-selected math review.
+              </p>
             </div>
           )}
         </section>

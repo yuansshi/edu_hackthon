@@ -1,0 +1,19 @@
+{
+  "team": "Smart Pants",
+  "linkedin": "https://www.linkedin.com/in/yuan-shi-123a1b1a/",
+  "slides": [
+    {
+      "title": "Smart Pants — Who Are You",
+      "body": "Team name: Smart Pants\nYuan Shi — Software Engineer; tutoring, reasoning and verification\nLinkedIn: https://www.linkedin.com/in/yuan-shi-123a1b1a/\nHeather Bian — Product Marketing; Discovery and student profiles\nTrack: Real-Time Multi-Modal Tutors & Agents"
+    },
+    {
+      "title": "Smart Pants — What Are You Solving",
+      "body": "Problem: A correct answer can hide a misunderstanding, and learners need different ways into a lesson.\nSolution: Discovery answers → reviewed profile → customized lesson → fresh understanding check.\nDemo: Maya chooses examples and short steps; her lesson changes its opening, pacing and feedback.\nLive URL: https://instantly-henry-reforms-notebook.trycloudflare.com/?demo=combined\nModalities: text + interactive visual math; optional device voice for Discovery prompts.\nLearning outcome: check reasoning on a new unaided problem; learning gains are not yet validated.\nData: synthetic profiles and authored examples; no real student records.\nStatus: profile-to-lesson mapping runs; math responses are prepared. Live voice/handwriting assessment is in progress."
+    },
+    {
+      "title": "Smart Pants — Why Our Team",
+      "body": "Team–problem fit: We combine learner-facing product thinking with software engineering and testable reasoning rules.\nRelevant experience: Yuan brings software engineering; Heather brings product marketing. We own complementary parts of one learner journey.\nBuilt together: a reviewed profile handoff, an explainable lesson design and a working integration preview.\nNext: complete live multimodal tutoring, expand lesson coverage and evaluate independent application with learners."
+    }
+  ],
+  "liveUrl": "https://instantly-henry-reforms-notebook.trycloudflare.com/?demo=combined"
+}

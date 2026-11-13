@@ -9,8 +9,8 @@ selected first lesson for Grade 2; the demo covers this one lesson.
 
 ## Development tracks and integration goal
 
-- **Partner:** personality assessment and student profile creation.
-- **Yuanshi:** tutoring, math reasoning assessment, learning verification, and
+- **Heather Bian — Product Marketing:** Discovery and student profile creation.
+- **Yuan Shi — Software Engineer:** tutoring, math reasoning assessment, learning verification, and
   teacher feedback.
 - **Combined demo:** create a student profile first, then use the student's
   personality and profile to customize teaching and interaction.
@@ -18,9 +18,26 @@ selected first lesson for Grade 2; the demo covers this one lesson.
 The two parts are developed separately. This repository now includes
 [Learning Strength Discovery](app/README.md), an interactive learning-habit
 profile for grades 5–8. Students review and correct their profile before it
-produces a versioned [teaching handoff](app/INTEGRATION.md). The existing tutor
-does not yet consume that export. The current grade 5–8 assessment must not be
-presented as validated for the grade 2 lesson or other age groups.
+produces a versioned [teaching handoff](app/INTEGRATION.md). The new combined
+lesson preview consumes that profile and confirmed routine choices to change
+the lesson opening, pacing, supports, and encouragement. Math responses remain
+prepared examples evaluated by the tutoring rules; live voice/drawing assessment
+and full adaptive tutoring remain in development. The current grade 5–8 discovery
+must not be presented as validated for the grade 2 lesson or other age groups.
+
+## Smart Pants submission and combined preview
+
+The [three-slide submission kit](presentation/README.md) includes
+[copy-ready text](presentation/SUBMISSION-COPY.txt), a screenshot, presenter
+notes, and a repeatable 60-second walkthrough. The submission follows the shared
+deck's exact three-slide format and three-minute limit.
+
+Run Discovery below and open `http://127.0.0.1:5173/?demo=combined` for explicit
+synthetic examples. **Load Maya example → Back to my profile → Build my trial
+routine → Build my lesson.** The rehearsal stays in memory and leaves remembered
+Discovery visits untouched. A synthetic Grade 5 learner uses teacher-selected
+foundational math review; the profile does not select ability or math placement.
+See [the combined demo guide](presentation/COMBINED-DEMO.md) for scope and limits.
 
 ## Run Learning Strength Discovery
 

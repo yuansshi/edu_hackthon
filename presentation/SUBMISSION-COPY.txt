@@ -1,0 +1,27 @@
+Smart Pants — Who Are You
+
+Team name: Smart Pants
+Yuan Shi — Software Engineer; tutoring, reasoning and verification
+LinkedIn: https://www.linkedin.com/in/yuan-shi-123a1b1a/
+Heather Bian — Product Marketing; Discovery and student profiles
+Track: Real-Time Multi-Modal Tutors & Agents
+
+Smart Pants — What Are You Solving
+
+Problem: A correct answer can hide a misunderstanding, and learners need different ways into a lesson.
+Solution: Discovery answers → reviewed profile → customized lesson → fresh understanding check.
+Demo: Maya chooses examples and short steps; her lesson changes its opening, pacing and feedback.
+Live URL: https://instantly-henry-reforms-notebook.trycloudflare.com/?demo=combined
+Modalities: text + interactive visual math; optional device voice for Discovery prompts.
+Learning outcome: check reasoning on a new unaided problem; learning gains are not yet validated.
+Data: synthetic profiles and authored examples; no real student records.
+Status: profile-to-lesson mapping runs; math responses are prepared. Live voice/handwriting assessment is in progress.
+
+Smart Pants — Why Our Team
+
+Team–problem fit: We combine learner-facing product thinking with software engineering and testable reasoning rules.
+Relevant experience: Yuan brings software engineering; Heather brings product marketing. We own complementary parts of one learner journey.
+Built together: a reviewed profile handoff, an explainable lesson design and a working integration preview.
+Next: complete live multimodal tutoring, expand lesson coverage and evaluate independent application with learners.
+
+Use exactly three slides. Duplicate templates 5–7 and place copies at the END. The demo URL is temporary: keep the static server, tunnel, laptop and network running during judging.
