@@ -1,0 +1,182 @@
+:root {
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --primary: #165dff;
+  --primary-dark: #0f42b5;
+  --accent: #eef3ff;
+  --text: #1f2937;
+  --muted: #596780;
+  --border: #d9e0ed;
+  --success: #0b7a62;
+  --shadow: 0 18px 36px rgba(31, 41, 55, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #f8fbff 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 980px;
+  margin: 48px auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(270px, 1fr));
+  gap: 22px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.problem-panel,
+.response-panel {
+  grid-column: span 2;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+}
+
+.problem-box {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--accent);
+  border: 1px solid #d2dffc;
+  border-radius: 12px;
+  padding: 18px 20px;
+  width: fit-content;
+  margin-bottom: 12px;
+}
+
+.label {
+  color: var(--muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.problem-box strong {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.prompt {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.button-row.compact {
+  margin-top: 14px;
+}
+
+button {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  cursor: pointer;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background: var(--primary);
+  color: white;
+}
+
+.primary-button:hover {
+  background: var(--primary-dark);
+}
+
+.secondary-button,
+.ghost-button {
+  background: #edf2ff;
+  color: var(--text);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  resize: vertical;
+  min-height: 140px;
+  background: #fbfcff;
+  color: var(--text);
+}
+
+textarea:focus {
+  outline: 3px solid rgba(22, 93, 255, 0.15);
+  border-color: var(--primary);
+}
+
+.status {
+  margin-top: 12px;
+  color: var(--success);
+  min-height: 1.5em;
+  font-weight: 600;
+}
+
+.coach-output {
+  min-height: 140px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  padding: 18px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-panel,
+  .response-panel {
+    grid-column: auto;
+  }
+}

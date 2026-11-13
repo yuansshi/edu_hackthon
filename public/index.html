@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExplainBack Tutor</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="card problem-panel">
+        <p class="eyebrow">Tutor demo</p>
+        <h1>Learn regrouping with a listening coach</h1>
+        <div class="problem-box" aria-live="polite">
+          <span class="label">Current task</span>
+          <strong>27 + 18</strong>
+        </div>
+        <p class="prompt">
+          Show or explain how you add the ones and tens.
+        </p>
+      </section>
+
+      <section class="card control-panel">
+        <div class="button-row">
+          <button id="listen-button" class="primary-button" type="button">Use browser speech recognition</button>
+          <button id="sample-button" class="secondary-button" type="button">Try a sample</button>
+        </div>
+
+        <p>Early prototype: browser speech recognition and a generic prompt, not the planned OpenAI assessment. Review and edit the words before submitting.</p>
+        <label class="field-label" for="transcript">Student explanation</label>
+        <textarea id="transcript" rows="6" placeholder="Example: Seven ones plus eight ones is fifteen ones. Ten of those ones make a ten, leaving five ones."></textarea>
+
+        <div class="button-row compact">
+          <button id="submit-button" class="primary-button" type="button">Coach me</button>
+          <button id="clear-button" class="ghost-button" type="button">Clear</button>
+        </div>
+        <p id="status" class="status" aria-live="polite">Ready to listen.</p>
+      </section>
+
+      <section class="card response-panel">
+        <p class="eyebrow">Coach response</p>
+        <div id="coach-output" class="coach-output" aria-live="polite">
+          The coach will ask a general follow-up. This prototype does not yet assess your math.
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

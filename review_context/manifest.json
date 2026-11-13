@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-11",
+  "preset": "uninterrupted consolidated",
+  "target": "/Users/yuansshi/Projects/hackthon/edu_hackthon/concepts_brief.md",
+  "sha256": "a1d3fd1b00d50b61a119b1a02e3420349b3cd23aa751b75e2419a2267d2c0df1",
+  "line_count": 354,
+  "feature_range": [
+    1,
+    354
+  ],
+  "detailed_range": null,
+  "scope_reason": "Concept brief with high-level build sequence; no separate detailed implementation-plan section.",
+  "target_edit_policy": "Review only; do not modify concepts_brief.md.",
+  "local_context": [
+    {
+      "path": "/Users/yuansshi/Documents/Codex/2026-08-30/https-wx-m-tv-sohu-com/blitz-learning/quests.mjs",
+      "sha256": "af5cae5460b93f1441c50db71fc702762ae90bdd6614b5ef88ef4718628d5cd5"
+    },
+    {
+      "path": "/Users/yuansshi/Documents/Codex/2026-08-30/https-wx-m-tv-sohu-com/blitz-learning/public/blitz-state.js",
+      "sha256": "cf1f3cd350ec175b05e2c81515cf87bffa5c0d839194671a82a5e1a8856fdce3"
+    },
+    {
+      "path": "/Users/yuansshi/Documents/Codex/2026-08-30/https-wx-m-tv-sohu-com/blitz-learning/lesson.mjs",
+      "sha256": "fe58c65436d74ad634e5938a3847de4ad5a9ee68f506d3216acc5ef8c578c55b"
+    },
+    {
+      "path": "/Users/yuansshi/Documents/Codex/2026-08-30/https-wx-m-tv-sohu-com/blitz-learning/server.mjs",
+      "sha256": "348d6c9c41f93a7254e7fb9f52673f043377a6d7ba211893ccef00fd4a065d98"
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/hackathon_ideas.md",
+      "sha256": "626c5a66a9603889171056a7010cd4bf889e6e58a58a7ce9aabec4c9205cddc9"
+    }
+  ],
+  "web_context": [
+    {
+      "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/26/i",
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_context/ies_elementary.html",
+      "sha256": "cef3ad8c781fc30f0a4f8ee7dc34ac77228dda3d004bba4075548c90d3d3b385",
+      "bytes": 70877,
+      "status": "saved",
+      "readable_path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_context/ies_elementary.txt",
+      "readable_sha256": "a694e254faa3c1f81ddac622da121d50039428fa4e4438554991f4a2a1fc2871"
+    },
+    {
+      "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/1",
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_context/ies_learning.html",
+      "sha256": "475680c2dfd73b825338426aa68b635f212cc1c42cca915574565135f28a1cab",
+      "bytes": 61507,
+      "status": "saved",
+      "readable_path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_context/ies_learning.txt",
+      "readable_sha256": "599639652e7e4798d84db3909233193e34cdbb0bf978dc88505175319d6e5f7d"
+    },
+    {
+      "url": "https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/feedback",
+      "status": "not_saved",
+      "reason": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "reviewer_isolation": "fork_turns=none; no parent transcript or vault context supplied. Host instruction-file exclusion is not verified.",
+  "stages": {
+    "5": "initial zoom out and inventive catalyst",
+    "6": "document-only comprehension",
+    "7": "design, structural, style critique",
+    "8": "intermediate zoom out",
+    "9": "not applicable: no detailed implementation plan"
+  },
+  "reviewers": [
+    {
+      "task": "stage5_zoom_out",
+      "stage": 5,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    },
+    {
+      "task": "stage5_inventive",
+      "stage": 5,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    },
+    {
+      "task": "stage6_comprehension",
+      "stage": 6,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    },
+    {
+      "task": "stage7_design",
+      "stage": 7,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    },
+    {
+      "task": "stage7_structural",
+      "stage": 7,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    },
+    {
+      "task": "stage7_style",
+      "stage": 7,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    },
+    {
+      "task": "stage8_zoom_out",
+      "stage": 8,
+      "status": "completed",
+      "read_receipt": "reported all assigned reading complete; target hash matched"
+    }
+  ],
+  "stage9_status": "not applicable: no separate detailed implementation plan",
+  "original_findings": 7,
+  "carry_forward_records": 4,
+  "consolidated_actions": 6,
+  "artifacts": [
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/zoom_out_report.md",
+      "sha256": "47dd9f36908bd3d4d3d61b644ded83db7a270c75639c49c9bcccc015409ee817"
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/comprehension_report.md",
+      "sha256": "9bfc5e3d6a59e7ff9e939cd8a306cab9bb0b3f4195c621b4be6c1d44c6dc4853"
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/critic_report.md",
+      "sha256": "cee516b2c417f76dfde56afa4c8d2a4195a2937e02f54ecddc62aaa8043e6584"
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/intermediate_zoom_out_report.md",
+      "sha256": "9882a5c0ab1000e7e82391418aeb82423af0a7ca18a0ef5e0e4852fa9d3da750"
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/implementation_readiness_report.md",
+      "sha256": "e72905d75c0ea60251f14366a9cb3c9290714eb3c36917809192a381050d6dd4"
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/consolidated_review_report.md",
+      "sha256": "d87ad2f290e15c99dd4e8850df4e3ec58e8bb414b9edb3e5a8d0d7fa32ab7e57"
+    }
+  ],
+  "reviewed_snapshot": {
+    "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_context/concepts_brief.reviewed.md",
+    "sha256": "a1d3fd1b00d50b61a119b1a02e3420349b3cd23aa751b75e2419a2267d2c0df1",
+    "line_count": 354
+  },
+  "target_unchanged_at_review_completion": true,
+  "current_target_matches_reviewed": false,
+  "follow_up": {
+    "resolution": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_resolution.md",
+    "current_target_sha256": "c498ecf66152992486458cd2ecf42a0b7176fabd69d0bcfc32367f1388eb4423",
+    "status": "A1 and A2 addressed at concept level; focused independent consistency check completed with no actionable contradictions",
+    "resolution_sha256": "e776ffa511719ac06377b8a1cf54f1bdb2569a0a2886b65c0ac683a32e1d5731",
+    "check_type": "focused document consistency check, not an EGM re-review or implementation validation",
+    "remaining_actions": [
+      "A4",
+      "A5",
+      "A6"
+    ],
+    "focused_check_resolution_sha256": "5d63a0cabc5a8d9667dc97574183d03229b7172fb829a560fcca1596a28f6e9b",
+    "subsequent_scope_decisions": {
+      "A3": "Author selected freehand drawing/writing with explanation; drawing-deferral recommendation settled by scope choice, not fixed or validated."
+    }
+  }
+}

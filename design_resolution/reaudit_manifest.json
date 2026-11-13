@@ -1,0 +1,676 @@
+{
+  "date": "2026-11-13",
+  "operation": "Stage 9 re-audit after authorized resolution; one re-audit",
+  "status": "completed",
+  "target": {
+    "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_draft.resolved.reviewed.2026-11-13.md",
+    "sha256": "78254d8f2561590211dab3bf2bbc07894b5e33033ee1bffe833cfd265624729c",
+    "line_count": 812,
+    "bytes": 59691
+  },
+  "source_target": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_draft.md",
+  "feature_range": [
+    1,
+    431
+  ],
+  "detailed_range": [
+    432,
+    812
+  ],
+  "normative_contracts": [
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_resolution/learning_contract.md",
+      "sha256": "f17958a73bf4a1bac0d7fd12a974252dc6f96cd373263fbd107af3484e8729d2",
+      "line_count": 528,
+      "bytes": 45418
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_resolution/api_contract.md",
+      "sha256": "9398b7cb54ce8ac49925a9734d71aea67d43d4bb4c899c1466346bf2803796b6",
+      "line_count": 571,
+      "bytes": 34941
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_resolution/fixture_contract.md",
+      "sha256": "e1a0d835c4cffd40d6a1e118ff3455911aaa59c0c939714edff5b9f7251c7458",
+      "line_count": 439,
+      "bytes": 28640
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_resolution/media_contract.md",
+      "sha256": "5ab9c380dc5d4246cfe579b3a4b7b5f80329c6ecc11f26f3a585a10ab957b82a",
+      "line_count": 85,
+      "bytes": 5348
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_resolution/verification_contract.md",
+      "sha256": "d7ebd1668bfae3900b1e142b25e0c3e67bf15e373a6f19483165879a61a92176",
+      "line_count": 479,
+      "bytes": 27225
+    }
+  ],
+  "contract_archive": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_resolution/reviewed_contracts.json",
+  "baseline_context": [
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/concepts_brief.md",
+      "sha256": "c498ecf66152992486458cd2ecf42a0b7176fabd69d0bcfc32367f1388eb4423",
+      "bytes": 26828
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_resolution.md",
+      "sha256": "e776ffa511719ac06377b8a1cf54f1bdb2569a0a2886b65c0ac683a32e1d5731",
+      "bytes": 3756
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/technical_plan_notes.md",
+      "sha256": "c23cd3fed36732902ef165962132a0c6efe9bb3ab1a62085952449a2c7341440",
+      "bytes": 15455
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/implementation_plan_notes.md",
+      "sha256": "3300a34576e62c53e2f441003085b264d8de3e50f7b1c8f8d5e17d2eb9d0f097",
+      "bytes": 42663
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/consolidated_review_report.md",
+      "sha256": "d87ad2f290e15c99dd4e8850df4e3ec58e8bb414b9edb3e5a8d0d7fa32ab7e57",
+      "bytes": 10774
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/regrouping_audio_probe.md",
+      "sha256": "2e831804f8ee26415f47ac5bd9e7b0734ddb733491db0fd9b94c9b982d85ce6e",
+      "bytes": 9211
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/hackathon_ideas.md",
+      "sha256": "626c5a66a9603889171056a7010cd4bf889e6e58a58a7ce9aabec4c9205cddc9",
+      "bytes": 10246
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_data.md",
+      "sha256": "0316e10a5930eba637499d4e7a512d57625e91801e0f8e207f42073eb58808b0",
+      "bytes": 88237
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_transcription.md",
+      "sha256": "2a4955e6ddb7dd870901bef4ce0776a7002cd9deefa2509386bdfbbbdb9f42b0",
+      "bytes": 39387
+    },
+    {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_vision.md",
+      "sha256": "fe4229978b28c640ef035d77e4ba9e97bd9efe9778db8014125883b6b2e79c27",
+      "bytes": 41416
+    }
+  ],
+  "original_review": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/consolidated_review_report.md",
+  "original_snapshot_verified": true,
+  "readers": [
+    {
+      "parent_context": "fork_turns=none",
+      "status": "completed",
+      "full_target_read": [
+        1,
+        812
+      ],
+      "full_appendix_reads": {
+        "learning_contract.md": [
+          1,
+          528
+        ],
+        "api_contract.md": [
+          1,
+          571
+        ],
+        "fixture_contract.md": [
+          1,
+          439
+        ],
+        "media_contract.md": [
+          1,
+          85
+        ],
+        "verification_contract.md": [
+          1,
+          479
+        ]
+      },
+      "hashes": {
+        "design_draft.resolved.reviewed.2026-11-13.md": "78254d8f2561590211dab3bf2bbc07894b5e33033ee1bffe833cfd265624729c",
+        "learning_contract.md": "f17958a73bf4a1bac0d7fd12a974252dc6f96cd373263fbd107af3484e8729d2",
+        "api_contract.md": "9398b7cb54ce8ac49925a9734d71aea67d43d4bb4c899c1466346bf2803796b6",
+        "fixture_contract.md": "e1a0d835c4cffd40d6a1e118ff3455911aaa59c0c939714edff5b9f7251c7458",
+        "media_contract.md": "5ab9c380dc5d4246cfe579b3a4b7b5f80329c6ecc11f26f3a585a10ab957b82a",
+        "verification_contract.md": "d7ebd1668bfae3900b1e142b25e0c3e67bf15e373a6f19483165879a61a92176"
+      },
+      "root_hash_comparison": "all matched",
+      "receipt_basis": "Reviewer-reported reads and hashes; root has no separate native child tool trace.",
+      "role": "readiness",
+      "agent": "/root/resolution_readiness",
+      "persona": "implementation_readiness.md",
+      "persona_full_read": true,
+      "standard_full_read": true,
+      "assigned_standard": "implementation-readiness-standard.md",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "nit": 0
+      },
+      "baseline_consultation": [
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/concepts_brief.md",
+          "ranges": [
+            [
+              121,
+              172
+            ],
+            [
+              251,
+              310
+            ],
+            [
+              334,
+              430
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_resolution.md",
+          "ranges": [
+            [
+              1,
+              69
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/technical_plan_notes.md",
+          "ranges": [
+            [
+              1,
+              283
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/implementation_plan_notes.md",
+          "ranges": [
+            [
+              1,
+              90
+            ],
+            [
+              189,
+              318
+            ],
+            [
+              424,
+              641
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/consolidated_review_report.md",
+          "ranges": [
+            [
+              30,
+              119
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/regrouping_audio_probe.md",
+          "ranges": [
+            [
+              1,
+              156
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/hackathon_ideas.md",
+          "ranges": [
+            [
+              1,
+              55
+            ],
+            [
+              120,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_data.md",
+          "ranges": [
+            [
+              1,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_transcription.md",
+          "ranges": [
+            [
+              1,
+              110
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_vision.md",
+          "ranges": [
+            [
+              232,
+              285
+            ],
+            [
+              976,
+              1020
+            ],
+            [
+              1243,
+              1256
+            ]
+          ]
+        }
+      ],
+      "original_action_list_full_read": [
+        1,
+        190
+      ],
+      "truncated_reads": "Reread in untruncated chunks; not counted until complete."
+    },
+    {
+      "parent_context": "fork_turns=none",
+      "status": "completed",
+      "full_target_read": [
+        1,
+        812
+      ],
+      "full_appendix_reads": {
+        "learning_contract.md": [
+          1,
+          528
+        ],
+        "api_contract.md": [
+          1,
+          571
+        ],
+        "fixture_contract.md": [
+          1,
+          439
+        ],
+        "media_contract.md": [
+          1,
+          85
+        ],
+        "verification_contract.md": [
+          1,
+          479
+        ]
+      },
+      "hashes": {
+        "design_draft.resolved.reviewed.2026-11-13.md": "78254d8f2561590211dab3bf2bbc07894b5e33033ee1bffe833cfd265624729c",
+        "learning_contract.md": "f17958a73bf4a1bac0d7fd12a974252dc6f96cd373263fbd107af3484e8729d2",
+        "api_contract.md": "9398b7cb54ce8ac49925a9734d71aea67d43d4bb4c899c1466346bf2803796b6",
+        "fixture_contract.md": "e1a0d835c4cffd40d6a1e118ff3455911aaa59c0c939714edff5b9f7251c7458",
+        "media_contract.md": "5ab9c380dc5d4246cfe579b3a4b7b5f80329c6ecc11f26f3a585a10ab957b82a",
+        "verification_contract.md": "d7ebd1668bfae3900b1e142b25e0c3e67bf15e373a6f19483165879a61a92176"
+      },
+      "root_hash_comparison": "all matched",
+      "receipt_basis": "Reviewer-reported reads and hashes; root has no separate native child tool trace.",
+      "role": "codebase",
+      "agent": "/root/resolution_codebase",
+      "persona": "codebase_details.md",
+      "persona_full_read": true,
+      "standard_full_read": true,
+      "assigned_standard": "implementation-readiness-standard.md",
+      "findings": {
+        "blocker": 0,
+        "major": 2,
+        "nit": 1
+      },
+      "baseline_consultation": [
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/concepts_brief.md",
+          "ranges": [
+            [
+              1,
+              60
+            ],
+            [
+              300,
+              430
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_resolution.md",
+          "ranges": [
+            [
+              1,
+              69
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/technical_plan_notes.md",
+          "ranges": [
+            [
+              1,
+              21
+            ],
+            [
+              97,
+              135
+            ],
+            [
+              190,
+              209
+            ],
+            [
+              220,
+              234
+            ],
+            [
+              260,
+              283
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/implementation_plan_notes.md",
+          "ranges": [
+            [
+              189,
+              305
+            ],
+            [
+              363,
+              423
+            ],
+            [
+              452,
+              641
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/consolidated_review_report.md",
+          "ranges": [
+            [
+              1,
+              119
+            ],
+            [
+              157,
+              183
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/regrouping_audio_probe.md",
+          "ranges": [
+            [
+              1,
+              156
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/hackathon_ideas.md",
+          "ranges": [
+            [
+              21,
+              35
+            ],
+            [
+              74,
+              111
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_data.md",
+          "ranges": [
+            [
+              1,
+              39
+            ],
+            [
+              66,
+              121
+            ],
+            [
+              153,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_transcription.md",
+          "ranges": [
+            [
+              1,
+              47
+            ],
+            [
+              152,
+              165
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_vision.md",
+          "ranges": [
+            [
+              232,
+              274
+            ],
+            [
+              976,
+              1019
+            ],
+            [
+              1243,
+              1256
+            ]
+          ]
+        }
+      ],
+      "original_action_list_full_read": [
+        1,
+        190
+      ],
+      "truncated_reads": "Reread in untruncated chunks; not counted until complete."
+    },
+    {
+      "parent_context": "fork_turns=none",
+      "status": "completed",
+      "full_target_read": [
+        1,
+        812
+      ],
+      "full_appendix_reads": {
+        "learning_contract.md": [
+          1,
+          528
+        ],
+        "api_contract.md": [
+          1,
+          571
+        ],
+        "fixture_contract.md": [
+          1,
+          439
+        ],
+        "media_contract.md": [
+          1,
+          85
+        ],
+        "verification_contract.md": [
+          1,
+          479
+        ]
+      },
+      "hashes": {
+        "design_draft.resolved.reviewed.2026-11-13.md": "78254d8f2561590211dab3bf2bbc07894b5e33033ee1bffe833cfd265624729c",
+        "learning_contract.md": "f17958a73bf4a1bac0d7fd12a974252dc6f96cd373263fbd107af3484e8729d2",
+        "api_contract.md": "9398b7cb54ce8ac49925a9734d71aea67d43d4bb4c899c1466346bf2803796b6",
+        "fixture_contract.md": "e1a0d835c4cffd40d6a1e118ff3455911aaa59c0c939714edff5b9f7251c7458",
+        "media_contract.md": "5ab9c380dc5d4246cfe579b3a4b7b5f80329c6ecc11f26f3a585a10ab957b82a",
+        "verification_contract.md": "d7ebd1668bfae3900b1e142b25e0c3e67bf15e373a6f19483165879a61a92176"
+      },
+      "root_hash_comparison": "all matched",
+      "receipt_basis": "Reviewer-reported reads and hashes; root has no separate native child tool trace.",
+      "role": "style",
+      "agent": "/root/resolution_style",
+      "persona": "style.md",
+      "persona_full_read": true,
+      "standard_full_read": false,
+      "assigned_standard": null,
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "nit": 1
+      },
+      "baseline_consultation": [
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/concepts_brief.md",
+          "ranges": [
+            [
+              121,
+              173
+            ],
+            [
+              221,
+              310
+            ],
+            [
+              334,
+              430
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/review_resolution.md",
+          "ranges": [
+            [
+              1,
+              69
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/technical_plan_notes.md",
+          "ranges": [
+            [
+              190,
+              283
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/implementation_plan_notes.md",
+          "ranges": [
+            [
+              1,
+              75
+            ],
+            [
+              189,
+              297
+            ],
+            [
+              485,
+              576
+            ],
+            [
+              593,
+              641
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/consolidated_review_report.md",
+          "ranges": [
+            [
+              1,
+              183
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/regrouping_audio_probe.md",
+          "ranges": [
+            [
+              1,
+              156
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/hackathon_ideas.md",
+          "ranges": [
+            [
+              1,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_data.md",
+          "ranges": [
+            [
+              1,
+              160
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_transcription.md",
+          "ranges": [
+            [
+              1,
+              45
+            ],
+            [
+              709,
+              735
+            ]
+          ]
+        },
+        {
+          "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_vision.md",
+          "ranges": [
+            [
+              232,
+              250
+            ],
+            [
+              976,
+              1019
+            ],
+            [
+              1243,
+              1256
+            ]
+          ]
+        }
+      ],
+      "original_action_list_full_read": [
+        1,
+        190
+      ],
+      "truncated_reads": "Reread in untruncated chunks; not counted until complete."
+    }
+  ],
+  "limits": [
+    "Fresh parent conversation context uses fork_turns=none; host instruction-file exclusion remains unverified.",
+    "Native child tool traces are not separately exposed to root; require reported full-read receipts and independently matching hashes.",
+    "Document review only; no app, browser, provider, or learning-effectiveness pass is implied."
+  ],
+  "result_as_reviewed": "does not pass: 4 Major and 2 Nit findings; no Blocker",
+  "remediation": "All six findings accepted for post-audit integration. One formal re-audit cap reached; subsequent author/integrator checks are not a second fresh audit."
+}

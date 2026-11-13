@@ -1,0 +1,7 @@
+# Project-scoped Codex settings. Inherit existing user and account defaults.
+# Add overrides only when the project needs them; keep credentials and local
+# machine paths out of this file.
+#
+# Repository skills are discovered from ../.agents/skills/ automatically.
+# Configure selected installed plugins here when needed.
+# Lifecycle hooks live in hooks.json beside this file.

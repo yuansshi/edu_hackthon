@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "caseId": "audio-add-supported",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "Synthetic audio probe. addition-practice-1.", "strokes": [], "imagePngBase64": null,
+      "turns": [{
+        "source": "transcription",
+        "text": "Seven ones plus eight ones is fifteen ones. Ten of those ones make a ten, leaving five ones. Two tens plus one ten plus that new ten is four tens. The answer is forty-five.",
+        "audioCaseId": "audio-add-supported", "browserAudioClasses": []
+      }],
+      "candidate": {
+        "category": "supported_exchange", "observedAnswer": 45, "exchangeEvidence": "supported", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "Seven ones plus eight ones is fifteen ones. Ten of those ones make a ten, leaving five ones. Two tens plus one ten plus that new ten is four tens. The answer is forty-five.", "description": "The explanation exchanges ten ones for one ten."}],
+        "exchangeQuantities": {"before": {"tens": 3, "ones": 15}, "after": {"tens": 4, "ones": 5}},
+        "neutralReadback": "", "reasoningSummary": "The exchange preserves the combined amount.",
+        "teachingMoveId": "fresh-addition-check"
+      }
+    },
+    {
+      "caseId": "audio-sub-supported",
+      "problemId": "subtraction-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "Synthetic audio probe. subtraction-practice-1.", "strokes": [], "imagePngBase64": null,
+      "turns": [{
+        "source": "transcription",
+        "text": "Forty-two is three tens and twelve ones. Twelve minus seven is five. Three tens minus one ten is two tens. The answer is twenty-five.",
+        "audioCaseId": "audio-sub-supported", "browserAudioClasses": []
+      }],
+      "candidate": {
+        "category": "supported_exchange", "observedAnswer": 25, "exchangeEvidence": "supported", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "Forty-two is three tens and twelve ones. Twelve minus seven is five. Three tens minus one ten is two tens. The answer is twenty-five.", "description": "The starting number is decomposed without changing its value."}],
+        "exchangeQuantities": {"before": {"tens": 4, "ones": 2}, "after": {"tens": 3, "ones": 12}},
+        "neutralReadback": "", "reasoningSummary": "The exchange preserves the starting amount.",
+        "teachingMoveId": "fresh-subtraction-check"
+      }
+    },
+    {
+      "caseId": "audio-add-omitted-ten",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "Synthetic audio probe. addition-practice-1.", "strokes": [], "imagePngBase64": null,
+      "turns": [{
+        "source": "transcription",
+        "text": "Seven plus eight is fifteen. I keep five ones and ignore the ten in fifteen. Two tens plus one ten is three tens. My answer is thirty-five.",
+        "audioCaseId": "audio-add-omitted-ten", "browserAudioClasses": []
+      }],
+      "candidate": {
+        "category": "addition_omitted_ten", "observedAnswer": 35, "exchangeEvidence": "contradicted", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "Seven plus eight is fifteen. I keep five ones and ignore the ten in fifteen. Two tens plus one ten is three tens. My answer is thirty-five.", "description": "The new ten is explicitly omitted."}],
+        "exchangeQuantities": {"before": {"tens": 3, "ones": 15}, "after": {"tens": 3, "ones": 5}},
+        "neutralReadback": "", "reasoningSummary": "Dropping the ten reduces the represented amount.",
+        "teachingMoveId": "teach-addition-exchange"
+      }
+    },
+    {
+      "caseId": "audio-sub-value-changed",
+      "problemId": "subtraction-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "Synthetic audio probe. subtraction-practice-1.", "strokes": [], "imagePngBase64": null,
+      "turns": [{
+        "source": "transcription",
+        "text": "Forty-two becomes four tens and twelve ones. Twelve minus seven is five, and four tens minus one ten is three tens. My answer is thirty-five.",
+        "audioCaseId": "audio-sub-value-changed", "browserAudioClasses": []
+      }],
+      "candidate": {
+        "category": "subtraction_value_changed", "observedAnswer": 35, "exchangeEvidence": "contradicted", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "Forty-two becomes four tens and twelve ones. Twelve minus seven is five, and four tens minus one ten is three tens. My answer is thirty-five.", "description": "Ones are added without removing a ten."}],
+        "exchangeQuantities": {"before": {"tens": 4, "ones": 2}, "after": {"tens": 4, "ones": 12}},
+        "neutralReadback": "", "reasoningSummary": "The starting representation increases by ten.",
+        "teachingMoveId": "teach-subtraction-exchange"
+      }
+    },
+    {
+      "caseId": "audio-add-procedure",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "Synthetic audio probe. addition-practice-1.", "strokes": [], "imagePngBase64": null,
+      "turns": [{
+        "source": "transcription",
+        "text": "I write five, carry one, and add the top numbers and that one. The answer is forty-five.",
+        "audioCaseId": "audio-add-procedure", "browserAudioClasses": []
+      }],
+      "candidate": {
+        "category": "procedure_without_exchange_explanation", "observedAnswer": 45, "exchangeEvidence": "not_established", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "I write five, carry one, and add the top numbers and that one. The answer is forty-five.", "description": "A carried one is mentioned without its value."}],
+        "exchangeQuantities": null, "neutralReadback": "", "reasoningSummary": "The exchange meaning has not been explained.",
+        "teachingMoveId": "ask-carried-value"
+      }
+    },
+    {
+      "caseId": "audio-add-guess",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "Synthetic audio probe. addition-practice-1.", "strokes": [], "imagePngBase64": null,
+      "turns": [{
+        "source": "transcription",
+        "text": "My answer is forty-five. I guessed. I do not know why.",
+        "audioCaseId": "audio-add-guess", "browserAudioClasses": []
+      }],
+      "candidate": {
+        "category": "correct_answer_without_reasoning", "observedAnswer": 45, "exchangeEvidence": "not_established", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "My answer is forty-five. I guessed. I do not know why.", "description": "No strategy is supplied."}],
+        "exchangeQuantities": null, "neutralReadback": "", "reasoningSummary": "A correct guess does not establish exchange understanding.",
+        "teachingMoveId": "ask-strategy"
+      }
+    },
+    {
+      "caseId": "written-supported",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "3 tens and 15 ones = 4 tens and 5 ones. 27 + 18 = 45.", "strokes": [], "imagePngBase64": null,
+      "turns": [{"source": "written", "text": "I showed the trade in my work.", "audioCaseId": null, "browserAudioClasses": []}],
+      "candidate": {
+        "category": "supported_exchange", "observedAnswer": 45, "exchangeEvidence": "supported", "recognitionStatus": "usable",
+        "sourceEvidence": [{"sourceKind": "written_work", "sourceId": "$written", "quote": "3 tens and 15 ones = 4 tens and 5 ones. 27 + 18 = 45.", "description": "The written work preserves the value when exchanging."}],
+        "exchangeQuantities": {"before": {"tens": 3, "ones": 15}, "after": {"tens": 4, "ones": 5}},
+        "neutralReadback": "", "reasoningSummary": "Written working establishes the exchange.",
+        "teachingMoveId": "fresh-addition-check"
+      }
+    },
+    {
+      "caseId": "written-conflict",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "3 tens and 15 ones = 4 tens and 5 ones. 27 + 18 = 45.", "strokes": [], "imagePngBase64": null,
+      "turns": [{"source": "written", "text": "I ignored the ten and kept 3 tens and 5 ones. My answer is 35.", "audioCaseId": null, "browserAudioClasses": []}],
+      "candidate": {
+        "category": "needs_clarification", "observedAnswer": null, "exchangeEvidence": "unclear", "recognitionStatus": "conflict",
+        "sourceEvidence": [
+          {"sourceKind": "written_work", "sourceId": "$written", "quote": "3 tens and 15 ones = 4 tens and 5 ones.", "description": "The written work preserves the total."},
+          {"sourceKind": "turn", "sourceId": "$turn[0]", "quote": "I ignored the ten and kept 3 tens and 5 ones.", "description": "The explanation disagrees with the work."}
+        ],
+        "exchangeQuantities": null, "neutralReadback": "", "reasoningSummary": "The submitted sources conflict.",
+        "teachingMoveId": "confirm-recognition"
+      }
+    },
+    {
+      "caseId": "written-unclear",
+      "problemId": "addition-practice-1", "purpose": "practice", "assisted": false,
+      "writtenWorking": "27 + 18 = ?", "strokes": [], "imagePngBase64": null,
+      "turns": [{"source": "written", "text": "I am stuck.", "audioCaseId": null, "browserAudioClasses": []}],
+      "candidate": {
+        "category": "needs_clarification", "observedAnswer": null, "exchangeEvidence": "unclear", "recognitionStatus": "clarify",
+        "sourceEvidence": [], "exchangeQuantities": null, "neutralReadback": "",
+        "reasoningSummary": "There is not enough evidence to assess.", "teachingMoveId": "confirm-recognition"
+      }
+    }
+  ]
+}

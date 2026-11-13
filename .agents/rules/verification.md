@@ -1,0 +1,24 @@
+# Verification
+
+- Run `make check` after changing the agent setup. It validates the scaffold,
+  not an application's build, tests, or behavior.
+- Once application code exists, run the checks relevant to the change and exercise
+  the affected user journey. Add automated tests when they protect meaningful
+  behavior; avoid tests that only assert scaffold wording or internal structure.
+- Run `npm run check` and `npm test` for the current in-memory learning/session
+  core, PNG admission, and bounded OpenAI adapter. They use synthetic injected
+  observations/transports and never call a live provider. Run
+  `npm run test:prototype` separately for the legacy prototype.
+  The core/adapter are not yet wired to that page or its server.
+- For the Phase 2 audio checkpoint, run
+  `npm run probe:audio -- --preflight-only` first. It must generate and validate
+  every canonical WAV without reading a credential or making a provider call.
+  `npm run probe:audio` explicitly opts into paid calls using only this project's
+  credential. Preserve failures and distinguish preflight/offline passes from
+  an actual six-case live pass. Neither one verifies the browser drawing gate.
+- For a demo, verify the documented start command, required configuration, sample
+  inputs, expected result, and reset steps on the actual implementation.
+- Report checks that ran and their results. Distinguish successful behavior from
+  mocked behavior, skipped checks, and failures caused by missing access.
+- Never claim deployment, live API success, skill discovery, or product readiness
+  based only on file existence or a successful scaffold check.
