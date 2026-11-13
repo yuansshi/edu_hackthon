@@ -1,65 +1,46 @@
 # Smart Pants — judge questions
 
-## Is this live AI?
+**What works now?** Discovery generates a versioned, student-reviewed profile.
+Confirmed routine choices drive a working lesson mapper for opening, pacing,
+supports and feedback. The prepared math sequence runs the existing verification
+rules. Live speech/drawing assessment and full adaptive tutoring remain pending.
 
-The presentation preview uses synthetic student profiles and scripted
-personalization. The existing learning core evaluates the example evidence.
-The project also has an OpenAI assessment adapter, but this preview makes no
-provider calls. The complete profile-to-browser integration is the next milestone.
-Our partner is still developing the personality assessment and profile component
-in this same repository.
+**Is the questionnaire a validated personality test?** No. Learning Strength
+Discovery is a learning-habit pilot for grades 5–8. Its choices are adjustable,
+not fixed traits or proven learning styles. The synthetic Grade 5 demonstration
+uses a teacher-selected foundational regrouping review; it does not establish
+validity for Grade 2 or assign math ability.
 
-## How do you know personality-based teaching works?
+**What does the profile change?** The teaching interaction: an example-first or
+challenge-first invitation, optional visual supports, pacing and encouragement.
+The mathematical goal and evidence requirements stay separate. Narrative profile
+text is data and is never executed as tutor instructions.
 
-We have not established that yet. We are exploring whether profile information
-can make interaction more useful. The examples represent adjustable preferences,
-not fixed ability labels or proven learning styles. We need feedback from learners
-and teachers before making an effectiveness claim.
+**What happens when the learner changes an answer?** The current profile must be
+reviewed again. Changing the routine also requires renewed confirmation before
+launching a lesson, even if the profile revision itself stays unchanged.
 
-## What stops the AI from inventing a misconception?
+**Is the math demo live AI?** No. Prepared observations, freshness and independence
+assumptions are evaluated by the actual math rules. The demonstration does not
+prove live recognition quality, full browser/session eligibility, or learning
+effectiveness. No paid provider calls are needed for this preview.
 
-The adapter requests structured observations with cited submitted evidence.
-Application rules validate accepted sources and select reviewed teaching actions.
-Unclear or conflicting evidence leads to clarification. These boundaries limit
-accepted output; they do not eliminate every model error.
+**How do you measure learning?** Separate helped success from an unaided fresh
+check and later review. The demo shows those distinctions. Evaluation with
+learners and measured learning gains are future work.
 
-## Does a successful check prove lasting learning?
+**What data is used?** Explicit synthetic profiles and authored math examples;
+no real student records. The rehearsal is memory-only and does not read, replace
+or clear a saved Discovery visit. Normal Discovery remembering remains optional.
 
-We separate success with help from applying an idea independently. A fresh
-unaided problem provides evidence of current performance. Later review and
-evaluation with learners remain necessary. We do not claim mastery from one demo.
+**Why this team?** Yuan Shi brings software engineering and tutoring/reasoning
+implementation. Heather Bian brings product marketing and the Discovery/profile
+experience. The shared repository connects their contributions.
 
-## What happens to student data?
+**What if the demo URL stops?** It is a temporary tunnel to a static build. Keep
+the laptop, network and processes running. Use the slide screenshot as the
+presentation fallback. A durable static host can serve `docs/combined-demo/`.
 
-The selected prototype keeps records in memory for the current application run,
-releases audio after transcription, and provides no teacher audio replay. The
-presentation demo uses synthetic data and no microphone. Production use with
-children needs additional work.
-
-## What does each teammate own?
-
-Yuanshi's partner owns personality assessment and student profile creation;
-she is still developing that component in this repository. Yuanshi owns tutoring,
-reasoning assessment, and learning verification. The planned connection uses
-the student profile to shape the tutor's interaction while
-preserving the same mathematical evidence requirements.
-
-## What is the next demonstrable milestone?
-
-One connected journey: create a profile, receive a tailored teaching interaction,
-complete a fresh check, and show the teacher the supporting evidence. The shared
-profile format and complete browser integration remain to be agreed and built.
-
-## Can you show a different interaction style?
-
-Yes. After the three-minute pitch, reset the demo, select Leo, and compare his
-opening with Maya's. The prepared rule and guess examples also demonstrate
-different follow-up questions from the existing rubric. These remain synthetic
-examples; the partner's assessment component is still in development.
-
-## Evidence behind these answers
-
-- [Current implementation and ownership](../README.md)
-- [Learning rules](../src/learning.mjs) and [learning contract](../design_resolution/learning_contract.md)
-- [Assessment adapter](../src/assessment-adapter.mjs)
-- [Session records](../src/session-state.mjs) and [media contract](../design_resolution/media_contract.md)
+**Can we see a different learner?** In Q&A, load Leo and follow the same route.
+His confirmed choices start with a challenge, a ten-minute trial block, and
+progress feedback. These are explicit choices, not inferred ability labels.
