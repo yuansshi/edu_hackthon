@@ -6,6 +6,8 @@ The presentation preview uses synthetic student profiles and scripted
 personalization. The existing learning core evaluates the example evidence.
 The project also has an OpenAI assessment adapter, but this preview makes no
 provider calls. The complete profile-to-browser integration is the next milestone.
+Our partner is still developing the personality assessment and profile component
+in this same repository.
 
 ## How do you know personality-based teaching works?
 
@@ -36,9 +38,10 @@ children needs additional work.
 
 ## What does each teammate own?
 
-The partner owns personality assessment and student profile creation. Yuanshi
-owns tutoring, reasoning assessment, and learning verification. The planned
-connection uses the student profile to shape the tutor's interaction while
+Yuanshi's partner owns personality assessment and student profile creation;
+she is still developing that component in this repository. Yuanshi owns tutoring,
+reasoning assessment, and learning verification. The planned connection uses
+the student profile to shape the tutor's interaction while
 preserving the same mathematical evidence requirements.
 
 ## What is the next demonstrable milestone?
@@ -46,6 +49,13 @@ preserving the same mathematical evidence requirements.
 One connected journey: create a profile, receive a tailored teaching interaction,
 complete a fresh check, and show the teacher the supporting evidence. The shared
 profile format and complete browser integration remain to be agreed and built.
+
+## Can you show a different interaction style?
+
+Yes. After the three-minute pitch, reset the demo, select Leo, and compare his
+opening with Maya's. The prepared rule and guess examples also demonstrate
+different follow-up questions from the existing rubric. These remain synthetic
+examples; the partner's assessment component is still in development.
 
 ## Evidence behind these answers
 
