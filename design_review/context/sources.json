@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://developers.openai.com/api/docs/guides/your-data",
+    "html": {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_data.html",
+      "bytes": 667799,
+      "sha256": "158b2f57425245e8845f514006b69619f63b487887cb7eee4a2c659b4974192a",
+      "status": "saved"
+    },
+    "md": {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_data.md",
+      "bytes": 88237,
+      "sha256": "0316e10a5930eba637499d4e7a512d57625e91801e0f8e207f42073eb58808b0",
+      "status": "saved"
+    }
+  },
+  {
+    "url": "https://developers.openai.com/api/docs/guides/speech-to-text",
+    "html": {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_transcription.html",
+      "bytes": 711907,
+      "sha256": "97e3e8d9e063067bc42d99e93b61d5c0068dae58dffba5f3bf77ccd48adbc585",
+      "status": "saved"
+    },
+    "md": {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_transcription.md",
+      "bytes": 39387,
+      "sha256": "2a4955e6ddb7dd870901bef4ce0776a7002cd9deefa2509386bdfbbbdb9f42b0",
+      "status": "saved"
+    }
+  },
+  {
+    "url": "https://developers.openai.com/api/docs/guides/images-vision",
+    "html": {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_vision.html",
+      "bytes": 826438,
+      "sha256": "6d7ccc65b9ba10b472f9dcc169c0c5c00f24767fe27ed9a3834658e682e1da9b",
+      "status": "saved"
+    },
+    "md": {
+      "path": "/Users/yuansshi/Projects/hackthon/edu_hackthon/design_review/context/openai_vision.md",
+      "bytes": 41416,
+      "sha256": "fe4229978b28c640ef035d77e4ba9e97bd9efe9778db8014125883b6b2e79c27",
+      "status": "saved"
+    }
+  }
+]

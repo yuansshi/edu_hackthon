@@ -1,0 +1,199 @@
+{
+  "lessonId": "explainback-regrouping-grade-2",
+  "title": "ExplainBack Classroom: tens, ones, and equal trades",
+  "targetIds": ["addition-exchange", "subtraction-exchange"],
+  "targets": [
+    {
+      "targetId": "addition-exchange",
+      "criterionId": "conserve-value-addition",
+      "difficultyCode": "addition-omitted-ten",
+      "practice": {
+        "problemId": "addition-practice-1", "operation": "add", "left": 27, "right": 18,
+        "prompt": "Try 27 + 18. Draw or write how you know. You can also record your explanation."
+      },
+      "checks": [
+        {
+          "problemId": "addition-check-1", "operation": "add", "left": 36, "right": 27,
+          "prompt": "Try 36 + 27 on your own. Draw or write how you know. You can also record your explanation."
+        },
+        {
+          "problemId": "addition-check-2", "operation": "add", "left": 47, "right": 25,
+          "prompt": "Try 47 + 25 on your own. Draw or write how you know. You can also record your explanation."
+        },
+        {
+          "problemId": "addition-check-3", "operation": "add", "left": 58, "right": 17,
+          "prompt": "Try 58 + 17 on your own. Draw or write how you know. You can also record your explanation."
+        }
+      ],
+      "review": {
+        "problemId": "addition-review-1", "operation": "add", "left": 48, "right": 26,
+        "prompt": "Let’s come back to addition. Try 48 + 26 on your own. Show how you know."
+      }
+    },
+    {
+      "targetId": "subtraction-exchange",
+      "criterionId": "conserve-value-subtraction",
+      "difficultyCode": "subtraction-value-changed",
+      "practice": {
+        "problemId": "subtraction-practice-1", "operation": "subtract", "left": 42, "right": 17,
+        "prompt": "Now try 42 − 17. Draw or write how you know. You can also record your explanation."
+      },
+      "checks": [
+        {
+          "problemId": "subtraction-check-1", "operation": "subtract", "left": 54, "right": 28,
+          "prompt": "Try 54 − 28 on your own. Draw or write how you know. You can also record your explanation."
+        },
+        {
+          "problemId": "subtraction-check-2", "operation": "subtract", "left": 62, "right": 18,
+          "prompt": "Try 62 − 18 on your own. Draw or write how you know. You can also record your explanation."
+        },
+        {
+          "problemId": "subtraction-check-3", "operation": "subtract", "left": 81, "right": 57,
+          "prompt": "Try 81 − 57 on your own. Draw or write how you know. You can also record your explanation."
+        }
+      ],
+      "review": {
+        "problemId": "subtraction-review-1", "operation": "subtract", "left": 83, "right": 46,
+        "prompt": "Let’s come back to subtraction. Try 83 − 46 on your own. Show how you know."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "actionId": "ask-carried-value", "effect": "current_assignment",
+      "prompt": "What does the one you carried represent?", "marksAssisted": false
+    },
+    {
+      "actionId": "ask-strategy", "effect": "current_assignment",
+      "prompt": "How could you check your answer?", "marksAssisted": false
+    },
+    {
+      "actionId": "ask-value-check", "effect": "current_assignment",
+      "prompt": "How can you check that these tens and ones still make the starting number?", "marksAssisted": false
+    },
+    {
+      "actionId": "ask-exchange-evidence", "effect": "current_assignment",
+      "prompt": "Your way can work. Can you also show the tens and ones in your work?", "marksAssisted": false
+    },
+    {
+      "actionId": "confirm-recognition", "effect": "current_assignment",
+      "prompt": "Do these words and marks match your work? You can correct them or show more.", "marksAssisted": false
+    },
+    {
+      "actionId": "recheck-computation", "effect": "current_assignment",
+      "prompt": "Check the counting or calculation in your work. Show what you counted or calculated again.", "marksAssisted": true
+    },
+    {
+      "actionId": "warmup-tens-ones", "effect": "current_assignment",
+      "prompt": "Here is 34: 3 tens and 4 ones. Each long block is one ten. Each small block is one one. Show 34 as tens and ones, then return to your problem.",
+      "marksAssisted": true,
+      "visualTitle": "34 as tens and ones",
+      "stepTemplates": [
+        "Here is 34: 3 tens and 4 ones.",
+        "Each long block is one ten. Each small block is one one.",
+        "Show 34 as tens and ones, then return to your problem."
+      ],
+      "visualStepTemplates": [
+        "Show three ten-rods and four unit dots.",
+        "Label 30 and 4, then 34.",
+        "Invite a drawing; do not score or create a warmup judgment. Preserve the original assignment beside/behind the panel."
+      ]
+    },
+    {
+      "actionId": "warmup-addition", "effect": "current_assignment",
+      "prompt": "For 23 + 14, put the tens together and the ones together. 2 tens and 1 ten make 3 tens. 3 ones and 4 ones make 7 ones. That makes 37. Now return to your problem.",
+      "marksAssisted": true,
+      "visualTitle": "Put like units together",
+      "stepTemplates": [
+        "For 23 + 14, put the tens together and the ones together.",
+        "2 tens and 1 ten make 3 tens. 3 ones and 4 ones make 7 ones.",
+        "That makes 37. Now return to your problem."
+      ],
+      "visualStepTemplates": [
+        "Show 2 rods/3 dots and 1 rod/4 dots separately.",
+        "Move like units together.",
+        "Show 3 rods/7 dots and 23 + 14 = 37. No exchange occurs."
+      ]
+    },
+    {
+      "actionId": "warmup-subtraction", "effect": "current_assignment",
+      "prompt": "For 46 − 12, start with 4 tens and 6 ones. Take away 1 ten and 2 ones. 3 tens and 4 ones are left. That makes 34. Now return to your problem.",
+      "marksAssisted": true,
+      "visualTitle": "Take away tens and ones",
+      "stepTemplates": [
+        "For 46 − 12, start with 4 tens and 6 ones.",
+        "Take away 1 ten and 2 ones.",
+        "3 tens and 4 ones are left. That makes 34. Now return to your problem."
+      ],
+      "visualStepTemplates": [
+        "Show 4 rods/6 dots.",
+        "Mark and remove exactly 1 rod/2 dots.",
+        "Show 3 rods/4 dots and 46 − 12 = 34. No exchange occurs."
+      ]
+    },
+    {
+      "actionId": "teach-addition-exchange", "effect": "current_assignment",
+      "prompt": "Here are {aT} tens and {aO} ones, and {bT} tens and {bO} ones.",
+      "marksAssisted": true,
+      "visualTitle": "Trade 10 ones for 1 ten",
+      "stepTemplates": [
+        "Here are {aT} tens and {aO} ones, and {bT} tens and {bO} ones.",
+        "Together there are {t} tens and {o} ones.",
+        "Trade 10 ones for 1 ten. The amount stays the same.",
+        "Now {afterT} tens and {afterO} ones make {answer}. Use the trade to finish your work."
+      ],
+      "visualStepTemplates": [
+        "Show two separated groups: {aT} ten-rods and {aO} unit dots; {bT} ten-rods and {bO} unit dots. Count rods and unit dots with labels.",
+        "Bring the groups together without removing or duplicating a mark: {t} ten-rods and {o} unit dots.",
+        "Enclose exactly ten unit dots, replace that set with one ten-rod, and show the before/after side by side. Keep all other dots and all original rods. Display {t} tens + {o} ones = {afterT} tens + {afterO} ones.",
+        "Label {afterT} tens and {afterO} ones and {a} + {b} = {answer}. Keep the teaching panel separate from the child's immutable submission."
+      ]
+    },
+    {
+      "actionId": "teach-subtraction-exchange", "effect": "current_assignment",
+      "prompt": "Start with {t} tens and {o} ones. That makes {a}.",
+      "marksAssisted": true,
+      "visualTitle": "Trade 1 ten for 10 ones",
+      "stepTemplates": [
+        "Start with {t} tens and {o} ones. That makes {a}.",
+        "Trade 1 ten for 10 ones. The amount stays the same.",
+        "Now take away {bT} tens and {bO} ones.",
+        "{remainingT} tens and {remainingO} ones are left. That makes {answer}. Use the trade to finish your work."
+      ],
+      "visualStepTemplates": [
+        "Show {t} ten-rods and {o} unit dots and label the total {a}.",
+        "Select one existing rod; replace it with exactly ten dots. Show before and after side by side, labelled {t} tens + {o} ones = {afterT} tens + {afterO} ones = {a}. Reduce the visible rod count at the same step that adds the dots.",
+        "Mark and remove exactly {bT} ten-rods and {bO} unit dots from {afterT} ten-rods and {afterO} unit dots, keeping tens and ones in separate columns.",
+        "Label {remainingT} tens and {remainingO} ones and {a} − {b} = {answer}. Keep the teaching panel separate from the child's immutable submission."
+      ]
+    },
+    {
+      "actionId": "fresh-addition-check", "effect": "new_assignment",
+      "prompt": "Try {a} + {b} on your own. Draw or write how you know. You can also record your explanation.", "marksAssisted": false
+    },
+    {
+      "actionId": "fresh-subtraction-check", "effect": "new_assignment",
+      "prompt": "Try {a} − {b} on your own. Draw or write how you know. You can also record your explanation.", "marksAssisted": false
+    },
+    {
+      "actionId": "start-subtraction-practice", "effect": "new_assignment",
+      "prompt": "Now try 42 − 17. Draw or write how you know. You can also record your explanation.", "marksAssisted": false
+    },
+    {
+      "actionId": "later-review", "effect": "new_assignment",
+      "prompt": "Let’s come back to {targetName}. Try {a} {operator} {b} on your own. Show how you know.", "marksAssisted": false
+    },
+    {
+      "actionId": "resume-subtraction-task", "effect": "new_assignment",
+      "prompt": "{destinationPrompt}", "marksAssisted": false
+    },
+    {
+      "actionId": "request-teacher-review", "effect": "session_status",
+      "prompt": "Ask your teacher to look at this with you. Your work is saved for this session.", "marksAssisted": true
+    },
+    {
+      "actionId": "finish-session", "effect": "session_status",
+      "prompt": "Your work is saved for this session. Your teacher can see what you tried and what still needs checking.", "marksAssisted": false
+    }
+  ]
+}
