@@ -1,0 +1,51 @@
+.combined-rehearsal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1240px;
+  margin: 20px auto;
+  padding: 20px 28px;
+  border: 1px solid #cad8c1;
+  border-radius: 16px;
+  background: #f0f5df;
+  color: #163c32;
+}
+
+.combined-rehearsal strong {
+  font-size: 18px;
+}
+.combined-rehearsal p {
+  margin: 5px 0;
+  line-height: 1.45;
+}
+.combined-rehearsal small {
+  display: block;
+  line-height: 1.5;
+  color: #455b46;
+}
+.combined-rehearsal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.combined-rehearsal-actions button {
+  min-height: 44px;
+}
+.combined-lesson-launch {
+  margin-top: 18px;
+}
+
+@media (max-width: 800px) {
+  .combined-rehearsal {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 14px;
+    padding: 18px;
+    gap: 16px;
+  }
+  .combined-rehearsal-actions .btn {
+    flex: 1;
+  }
+}

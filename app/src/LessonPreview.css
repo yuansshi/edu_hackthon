@@ -1,0 +1,841 @@
+.lesson-preview {
+  --lp-forest: #214b3b;
+  --lp-lime: #ddef95;
+  --lp-coral: #e9a18b;
+  --lp-line: #d8dfd0;
+  --lp-soft: #586653;
+  padding-top: 28px;
+  padding-bottom: 30px;
+}
+.lesson-preview .lp-toolbar,
+.lesson-preview .lp-text-button,
+.lesson-preview .lp-primary,
+.lesson-preview .lp-secondary {
+  display: flex;
+  align-items: center;
+}
+.lesson-preview .lp-toolbar {
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+.lesson-preview .lp-text-button {
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 0;
+  background: transparent;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: left;
+}
+.lesson-preview .lp-text-button:hover {
+  color: #966246;
+}
+.lesson-preview .lp-preview-note {
+  border: 1px solid #b9c9ad;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  color: #45603e;
+  text-align: center;
+}
+.lesson-preview .lp-progress {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 31px;
+}
+.lesson-preview .lp-progress li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #67715e;
+  font-size: 0.75rem;
+}
+.lesson-preview .lp-progress li > span {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #bdc8b3;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.lesson-preview .lp-progress li[aria-current] {
+  font-weight: 700;
+  color: var(--lp-forest);
+}
+.lesson-preview .lp-progress li[aria-current] > span {
+  background: var(--lp-forest);
+  color: white;
+  border-color: var(--lp-forest);
+}
+.lesson-preview .lp-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 27px;
+}
+.lesson-preview .lp-kicker {
+  font-size: 0.8rem;
+  font-weight: 650;
+  margin-bottom: 12px;
+  color: #597042;
+}
+.lesson-preview .lp-heading h1 {
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  margin-bottom: 12px;
+  color: var(--lp-forest);
+}
+.lesson-preview .lp-heading > div > p:last-child {
+  margin-bottom: 0;
+  max-width: 630px;
+  font-size: 0.95rem;
+}
+.lesson-preview .lp-goal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+  padding: 10px 0 10px 20px;
+  border-left: 2px solid #c9d89d;
+  font-size: 0.73rem;
+  color: var(--lp-soft);
+}
+.lesson-preview .lp-goal strong {
+  display: block;
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--lp-forest);
+  margin-top: 4px;
+}
+.lesson-preview .lp-small-label {
+  display: block;
+  font-size: 0.77rem;
+  font-weight: 650;
+  line-height: 1.5;
+  color: var(--lp-soft);
+}
+.lesson-preview .lp-primary,
+.lesson-preview .lp-secondary {
+  justify-content: center;
+  gap: 11px;
+  min-height: 48px;
+  padding: 12px 19px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: center;
+  line-height: 1.4;
+}
+.lesson-preview .lp-primary {
+  background: var(--lp-forest);
+  color: white;
+}
+.lesson-preview .lp-primary:hover {
+  background: #33614c;
+}
+.lesson-preview .lp-secondary {
+  background: transparent;
+  border: 1px solid #b4c2a4;
+}
+.lesson-preview .lp-secondary:hover {
+  background: #ebefd9;
+}
+.lesson-preview .lp-plan-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 38px;
+  align-items: start;
+}
+.lesson-preview .lp-personal-plan {
+  padding: 28px 31px 30px;
+  border: 1px solid var(--lp-line);
+  border-radius: 20px;
+  background: #fffef9;
+}
+.lesson-preview .lp-personal-plan > h2 {
+  margin: 14px 0 27px;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  max-width: 500px;
+}
+.lesson-preview .lp-plan-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.lesson-preview .lp-plan-row > svg {
+  margin-top: 3px;
+  color: #69833f;
+}
+.lesson-preview .lp-plan-row h3 {
+  font-size: 1.02rem;
+  margin-bottom: 5px;
+}
+.lesson-preview .lp-plan-row p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.lesson-preview .lp-supports {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+.lesson-preview .lp-supports > span {
+  font-size: 0.73rem;
+  background: #edf2df;
+  padding: 5px 10px;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+.lesson-preview .lp-personal-plan > .lp-primary {
+  margin-top: 25px;
+  width: 100%;
+}
+.lesson-preview .lp-math-note {
+  background: var(--lp-lime);
+  border-radius: 14px;
+  padding: 23px 26px;
+}
+.lesson-preview .lp-math-note > span {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.lesson-preview .lp-math-note > strong {
+  display: block;
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-size: 4.3rem;
+  font-weight: 550;
+  letter-spacing: -0.06em;
+  margin: 6px 0 12px;
+  line-height: 1.2;
+}
+.lesson-preview .lp-math-note p {
+  color: #415035;
+  font-size: 0.86rem;
+  margin-bottom: 0;
+}
+.lesson-preview .lp-readiness {
+  font-size: 0.75rem;
+  line-height: 1.65;
+  margin: 17px 0 22px;
+}
+.lesson-preview .lp-rationale {
+  border-top: 1px solid var(--lp-line);
+  padding-top: 16px;
+}
+.lesson-preview .lp-rationale > summary {
+  font-size: 0.88rem;
+  font-weight: 650;
+  cursor: pointer;
+  min-height: 35px;
+}
+.lesson-preview .lp-reason {
+  margin: 16px 0;
+}
+.lesson-preview .lp-reason h3 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+.lesson-preview .lp-reason p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.lesson-preview .lp-reason small,
+.lesson-preview .lp-rationale > small {
+  font-size: 0.68rem;
+  color: #5b6a50;
+  line-height: 1.6;
+  display: block;
+}
+.lesson-preview .lp-workspace {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 43px;
+  align-items: start;
+}
+.lesson-preview .lp-board {
+  background: #fffef9;
+  border: 1px solid #c1ceb4;
+  border-radius: 18px;
+  padding: 24px 28px 0;
+}
+.lesson-preview .lp-board-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.7rem;
+  color: var(--lp-soft);
+}
+.lesson-preview .lp-board-heading > span:first-child {
+  font-weight: 650;
+}
+.lesson-preview .lp-equation {
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-size: clamp(2.8rem, 4.4vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
+  padding: 24px 0 22px;
+  white-space: nowrap;
+}
+.lesson-preview .lp-equation > span {
+  font-weight: 300;
+}
+.lesson-preview .lp-equation > strong {
+  font-weight: 600;
+}
+.lesson-preview .lp-number-pair {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  justify-content: space-around;
+  border-top: 1px solid var(--lp-line);
+  padding-top: 23px;
+}
+.lesson-preview .lp-number-pair > div {
+  min-width: 0;
+}
+.lesson-preview .lp-number-pair > div > span {
+  display: block;
+  font-size: 0.72rem;
+  text-align: center;
+  margin-top: 10px;
+  color: var(--lp-soft);
+}
+.lesson-preview .lp-blocks {
+  display: flex;
+  gap: 19px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+.lesson-preview .lp-tens {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.lesson-preview .lp-tens > i {
+  display: block;
+  width: 16px;
+  height: 90px;
+  border: 1px solid #637f43;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #b6d17b 0,
+    #b6d17b 8px,
+    #6e8b50 8px,
+    #6e8b50 9px
+  );
+}
+.lesson-preview .lp-ones {
+  display: grid;
+  grid-template-columns: repeat(5, 12px);
+  gap: 4px;
+}
+.lesson-preview .lp-ones > i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #b96e58;
+  border-radius: 2px;
+  background: var(--lp-coral);
+}
+.lesson-preview .lp-board-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 16px 0 24px;
+}
+.lesson-preview .lp-open-space {
+  display: grid;
+  align-items: center;
+  min-height: 156px;
+  border-top: 1px solid var(--lp-line);
+}
+.lesson-preview .lp-open-space > p {
+  max-width: 310px;
+  text-align: center;
+  margin: 15px auto;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.lesson-preview .lp-board-footnote {
+  border-top: 1px solid var(--lp-line);
+  padding: 13px 0;
+  font-size: 0.69rem;
+  line-height: 1.6;
+  color: var(--lp-soft);
+}
+.lesson-preview .lp-response {
+  padding-top: 8px;
+}
+.lesson-preview .lp-response blockquote {
+  margin: 15px 0 26px;
+  padding: 0 0 0 18px;
+  border-left: 3px solid var(--lp-coral);
+  font-size: 1.13rem;
+  line-height: 1.65;
+  font-weight: 450;
+}
+.lesson-preview .lp-response > h2 {
+  font-size: 1.8rem;
+  margin-top: 19px;
+}
+.lesson-preview .lp-response > p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.lesson-preview .lp-response .lp-small {
+  font-size: 0.76rem;
+  line-height: 1.65;
+  margin-top: 18px;
+}
+.lesson-preview .lp-feedback {
+  padding-top: 7px;
+}
+.lesson-preview .lp-result-dot {
+  display: block;
+  width: 11px;
+  height: 11px;
+  background: var(--lp-coral);
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+.lesson-preview .lp-feedback h2 {
+  font-size: 1.75rem;
+  margin-bottom: 14px;
+}
+.lesson-preview .lp-feedback > p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.lesson-preview .lp-trade-statement {
+  font-family: 'Outfit Variable', 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  margin: 23px 0 18px;
+}
+.lesson-preview .lp-response .lp-teaching-copy {
+  font-size: 1.07rem;
+  line-height: 1.75;
+}
+.lesson-preview .lp-disclosure {
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: #5e6957;
+  border-top: 1px solid var(--lp-line);
+  margin-top: 32px;
+  padding-top: 16px;
+}
+.lesson-preview .lp-disclosure strong {
+  color: #45563c;
+}
+.lesson-preview .lp-pause {
+  text-align: center;
+  padding: 65px 20px;
+  background: #edf1e2;
+  border-radius: 20px;
+}
+.lesson-preview .lp-pause > svg {
+  color: #7c9654;
+  margin-bottom: 20px;
+}
+.lesson-preview .lp-pause h2 {
+  font-size: 2rem;
+}
+.lesson-preview .lp-pause > .lp-primary {
+  margin: 28px auto 0;
+}
+.lesson-preview .lp-evidence-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 50px;
+  align-items: start;
+}
+.lesson-preview .lp-evidence-history article {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding-bottom: 24px;
+}
+.lesson-preview .lp-evidence-history article:not(:last-child)::before {
+  position: absolute;
+  content: '';
+  width: 1px;
+  top: 14px;
+  bottom: -4px;
+  left: 6px;
+  background: #cbd5be;
+}
+.lesson-preview .lp-history-dot {
+  position: relative;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+  flex: none;
+  margin-top: 6px;
+  border-radius: 50%;
+}
+.lesson-preview .lp-coral {
+  background: var(--lp-coral);
+}
+.lesson-preview .lp-lime {
+  background: #b5cc68;
+}
+.lesson-preview .lp-green {
+  background: var(--lp-forest);
+}
+.lesson-preview .lp-evidence-history article small {
+  font-size: 0.72rem;
+  color: var(--lp-soft);
+}
+.lesson-preview .lp-evidence-history article h2 {
+  font-size: 1.24rem;
+  margin: 7px 0 10px;
+}
+.lesson-preview .lp-evidence-history article p {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+.lesson-preview .lp-evidence-history article strong {
+  font-size: 0.72rem;
+  background: #e8eddb;
+  border-radius: 5px;
+  padding: 5px 8px;
+  display: inline-block;
+  font-weight: 600;
+}
+.lesson-preview .lp-evidence-conclusion {
+  background: var(--lp-lime);
+  border-radius: 19px;
+  padding: 28px;
+}
+.lesson-preview .lp-evidence-conclusion h2 {
+  font-size: 2.1rem;
+  line-height: 1.13;
+  margin: 18px 0 20px;
+}
+.lesson-preview .lp-evidence-conclusion > p {
+  color: #44533c;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.lesson-preview .lp-evidence-conclusion dl {
+  margin: 23px 0;
+  font-size: 0.76rem;
+}
+.lesson-preview .lp-evidence-conclusion dl > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 20px;
+  padding: 12px 0;
+  border-top: 1px solid #a8be78;
+}
+.lesson-preview .lp-evidence-conclusion dd {
+  text-align: right;
+  margin: 0;
+  font-weight: 650;
+}
+.lesson-preview .lp-evidence-conclusion .lp-small {
+  font-size: 0.74rem;
+}
+.lesson-preview .lp-evidence-conclusion button {
+  width: 100%;
+  margin-top: 13px;
+}
+@media (max-width: 1000px) {
+  .lesson-preview .lp-plan-layout {
+    gap: 25px;
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+  .lesson-preview .lp-personal-plan {
+    padding: 24px;
+  }
+  .lesson-preview .lp-math-note {
+    padding: 21px;
+  }
+  .lesson-preview .lp-math-note > strong {
+    font-size: 3.5rem;
+  }
+  .lesson-preview .lp-plan-row {
+    gap: 11px;
+  }
+  .lesson-preview .lp-progress li {
+    font-size: 0.68rem;
+    gap: 6px;
+  }
+  .lesson-preview .lp-workspace {
+    gap: 28px;
+  }
+  .lesson-preview .lp-board {
+    padding: 21px 20px 0;
+  }
+  .lesson-preview .lp-equation {
+    font-size: 3.2rem;
+  }
+  .lesson-preview .lp-number-pair {
+    gap: 10px;
+  }
+  .lesson-preview .lp-number-pair .lp-blocks {
+    gap: 9px;
+  }
+  .lesson-preview .lp-number-pair .lp-tens {
+    gap: 4px;
+  }
+  .lesson-preview .lp-number-pair .lp-tens > i {
+    width: 12px;
+  }
+  .lesson-preview .lp-number-pair .lp-ones {
+    grid-template-columns: repeat(4, 10px);
+    gap: 3px;
+  }
+  .lesson-preview .lp-number-pair .lp-ones > i {
+    width: 10px;
+    height: 10px;
+  }
+  .lesson-preview .lp-evidence-layout {
+    gap: 30px;
+  }
+  .lesson-preview .lp-evidence-conclusion {
+    padding: 24px;
+  }
+  .lesson-preview .lp-evidence-conclusion h2 {
+    font-size: 1.9rem;
+  }
+}
+@media (max-width: 760px) {
+  .lesson-preview {
+    padding-top: 16px;
+  }
+  .lesson-preview .lp-toolbar {
+    gap: 12px;
+    margin-bottom: 18px;
+    align-items: start;
+  }
+  .lesson-preview .lp-text-button {
+    font-size: 0.77rem;
+    gap: 6px;
+  }
+  .lesson-preview .lp-preview-note {
+    font-size: 0.66rem;
+    max-width: 118px;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+  .lesson-preview .lp-progress {
+    gap: 9px;
+    margin-bottom: 25px;
+  }
+  .lesson-preview .lp-progress li {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+  .lesson-preview .lp-progress li > span {
+    width: 24px;
+    height: 24px;
+  }
+  .lesson-preview .lp-heading {
+    flex-direction: column;
+    align-items: start;
+    gap: 18px;
+    margin-bottom: 25px;
+  }
+  .lesson-preview .lp-heading h1 {
+    font-size: 2.15rem;
+  }
+  .lesson-preview .lp-heading > div > p:last-child {
+    font-size: 0.88rem;
+  }
+  .lesson-preview .lp-kicker {
+    font-size: 0.72rem;
+    margin-bottom: 9px;
+  }
+  .lesson-preview .lp-goal {
+    border: 0;
+    border-radius: 8px;
+    background: #eaf0dd;
+    padding: 11px 14px;
+    gap: 10px;
+  }
+  .lesson-preview .lp-goal > span {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  .lesson-preview .lp-goal strong {
+    margin: 0;
+    font-size: 1.12rem;
+  }
+  .lesson-preview .lp-plan-layout,
+  .lesson-preview .lp-workspace,
+  .lesson-preview .lp-evidence-layout {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+  .lesson-preview .lp-personal-plan {
+    padding: 23px;
+  }
+  .lesson-preview .lp-personal-plan > h2 {
+    font-size: 1.65rem;
+    margin-bottom: 24px;
+  }
+  .lesson-preview .lp-plan-row h3 {
+    font-size: 1rem;
+  }
+  .lesson-preview .lp-plan-row p {
+    font-size: 0.87rem;
+  }
+  .lesson-preview .lp-personal-plan > .lp-primary {
+    margin-top: 23px;
+  }
+  .lesson-preview .lp-math-note {
+    padding: 23px;
+  }
+  .lesson-preview .lp-math-note > strong {
+    font-size: 4rem;
+  }
+  .lesson-preview .lp-math-note p {
+    font-size: 0.9rem;
+    max-width: 360px;
+  }
+  .lesson-preview .lp-rationale > summary {
+    min-height: 44px;
+  }
+  .lesson-preview .lp-reason p {
+    font-size: 0.85rem;
+  }
+  .lesson-preview .lp-board {
+    padding: 22px 24px 0;
+  }
+  .lesson-preview .lp-equation {
+    font-size: 3.8rem;
+  }
+  .lesson-preview .lp-number-pair .lp-blocks {
+    gap: 14px;
+  }
+  .lesson-preview .lp-number-pair .lp-tens > i {
+    width: 15px;
+  }
+  .lesson-preview .lp-number-pair .lp-ones {
+    grid-template-columns: repeat(5, 11px);
+    gap: 3px;
+  }
+  .lesson-preview .lp-number-pair .lp-ones > i {
+    width: 11px;
+    height: 11px;
+  }
+  .lesson-preview .lp-response {
+    padding-top: 0;
+  }
+  .lesson-preview .lp-response blockquote {
+    font-size: 1.07rem;
+  }
+  .lesson-preview .lp-response > h2 {
+    font-size: 1.7rem;
+  }
+  .lesson-preview .lp-disclosure {
+    font-size: 0.7rem;
+    margin-top: 26px;
+  }
+  .lesson-preview .lp-evidence-conclusion {
+    padding: 25px;
+  }
+  .lesson-preview .lp-evidence-conclusion h2 {
+    font-size: 2rem;
+  }
+  .lesson-preview .lp-evidence-history article h2 {
+    font-size: 1.3rem;
+  }
+  .lesson-preview .lp-evidence-history article p {
+    font-size: 0.86rem;
+  }
+}
+@media (max-width: 420px) {
+  .lesson-preview .lp-preview-note {
+    max-width: 95px;
+    font-size: 0.62rem;
+  }
+  .lesson-preview .lp-text-button {
+    font-size: 0.7rem;
+  }
+  .lesson-preview .lp-text-button > svg {
+    width: 15px;
+  }
+  .lesson-preview .lp-heading h1 {
+    font-size: 1.95rem;
+  }
+  .lesson-preview .lp-goal > span {
+    gap: 9px;
+    font-size: 0.66rem;
+  }
+  .lesson-preview .lp-personal-plan {
+    padding: 20px;
+  }
+  .lesson-preview .lp-personal-plan > h2 {
+    font-size: 1.5rem;
+  }
+  .lesson-preview .lp-board {
+    padding: 20px 18px 0;
+  }
+  .lesson-preview .lp-board-heading {
+    font-size: 0.65rem;
+  }
+  .lesson-preview .lp-equation {
+    font-size: 3.3rem;
+  }
+  .lesson-preview .lp-number-pair {
+    gap: 8px;
+  }
+  .lesson-preview .lp-number-pair .lp-blocks {
+    gap: 8px;
+  }
+  .lesson-preview .lp-number-pair .lp-tens > i {
+    width: 11px;
+  }
+  .lesson-preview .lp-number-pair .lp-ones {
+    grid-template-columns: repeat(4, 10px);
+  }
+  .lesson-preview .lp-number-pair .lp-ones > i {
+    width: 10px;
+    height: 10px;
+  }
+  .lesson-preview .lp-number-pair > div > span {
+    font-size: 0.65rem;
+  }
+  .lesson-preview .lp-trade-statement {
+    font-size: 1.6rem;
+  }
+  .lesson-preview .lp-primary,
+  .lesson-preview .lp-secondary {
+    font-size: 0.86rem;
+    padding-inline: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lesson-preview *,
+  .lesson-preview *::before,
+  .lesson-preview *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
