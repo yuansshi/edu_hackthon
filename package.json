@@ -9,8 +9,10 @@
   "scripts": {
     "start": "node server.mjs",
     "dev": "node --watch server.mjs",
+    "preview": "node --use-system-ca presentation/demo-server.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node --test test/png.test.mjs test/learning.test.mjs test/assessment-adapter.test.mjs",
+    "test": "node --test test/png.test.mjs test/learning.test.mjs test/assessment-adapter.test.mjs test/preview.test.mjs",
+    "test:preview:browser": "node --test test/preview-browser.test.mjs",
     "test:prototype": "node --test test/coach.test.mjs test/server.test.mjs",
     "probe:audio": "node --use-system-ca scripts/live-probe.mjs",
     "discovery:dev": "npm --prefix app run dev -- --port 5173",
