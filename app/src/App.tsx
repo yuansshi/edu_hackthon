@@ -46,6 +46,7 @@ import {
 import type { Routine, Session } from './model';
 import { createTeachingProfile } from './handoff';
 import { LessonPreview } from './LessonPreview';
+import { TutorLaunch } from './TutorLaunch';
 import { createCombinedDemo } from './combinedDemo';
 import type { CombinedDemoKind } from './combinedDemo';
 import './App.css';
@@ -499,11 +500,14 @@ export default function App() {
         )}
         {screen.kind === 'lesson' &&
           (lessonReady ? (
-            <LessonPreview
-              key={session.revision}
-              profile={createTeachingProfile(session)}
-              onBack={() => setScreen({ kind: 'routine' })}
-            />
+            <>
+              <TutorLaunch profile={createTeachingProfile(session)} />
+              <LessonPreview
+                key={session.revision}
+                profile={createTeachingProfile(session)}
+                onBack={() => setScreen({ kind: 'routine' })}
+              />
+            </>
           ) : (
             <section className="page-width">
               <h1 id="screen-title" tabIndex={-1}>

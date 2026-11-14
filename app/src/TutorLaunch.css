@@ -1,0 +1,38 @@
+.tutor-launch {
+  width: min(1180px, calc(100% - 48px));
+  margin: 24px auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border: 1px solid #bcc9b6;
+  border-radius: 20px;
+  background: #edf1db;
+}
+
+.tutor-launch > div {
+  flex: 1;
+}
+
+.tutor-launch h2 {
+  margin: 8px 0;
+}
+
+.tutor-launch p {
+  max-width: 68ch;
+  margin: 8px 0;
+}
+
+.tutor-launch .btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .tutor-launch {
+    width: calc(100% - 32px);
+    padding: 20px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

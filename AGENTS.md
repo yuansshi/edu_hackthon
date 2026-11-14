@@ -15,8 +15,9 @@ transcription, transcript review, then drawing/text assessment. Detailed
 Implementation is author-approved. The [resolution report](design_resolution/goldfish_review_report.md)
 tracks the design-review fixes and fresh readiness result. Read the five normative
 contracts linked from Detailed Implementation before coding. The Phase 1
-in-memory core exists separately from the early browser prototype; HTTP/browser
-wiring and the approved OpenAI speech cascade are still pending. See the README
+in-memory core exists separately from the early port-3000 prototype. A focused
+chat/voice preview on port 3100 connects the core and OpenAI adapters, but the
+complete HTTP/browser classroom workflow remains pending. See the README
 for the current implementation checkpoint and actual verification commands.
 
 The separate [Learning Strength Discovery app](app/README.md) serves grades 5–8

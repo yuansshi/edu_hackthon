@@ -485,8 +485,17 @@ async function runLiveCases(rows, lesson, adapter, handle, shutdown, report) {
         }
         if (!result.failureReason) {
           try {
+            const validated = validateCandidate(candidate, assessmentInput);
+            const classification = classifyCandidate(validated, assessmentInput);
+            result.observed = candidateFields(validated, classification);
+            result.validationChecks = {
+              reasoningPresent: validated.reasoningSummary.trim().length > 0,
+              turnSourcesOnly: validated.sourceEvidence.length > 0 &&
+                validated.sourceEvidence.every(source => source.sourceKind === 'turn' && source.sourceId === assessmentInput.turns[0].turnId),
+              quotesExact: validated.sourceEvidence.every(source => typeof source.quote === 'string' &&
+                source.quote.trim().length > 0 && assessmentInput.turns[0].text.includes(source.quote))
+            };
             const checked = checkProbeCandidate(candidate, assessmentInput);
-            result.observed = candidateFields(checked.candidate, checked.classification);
             if (!sameCandidateFields(result.observed, BASELINE[index].expected) ||
                 checked.classification.outcome !== BASELINE[index].outcome) {
               result.failureReason = 'candidate_mismatch';
@@ -532,7 +541,8 @@ async function main(args) {
     failureReason: null, prerequisiteReason: null,
     cases: BASELINE.map(row => ({
       caseId: row.caseId, status: 'not_run', transcript: null, transcriptMatches: null,
-      expected: row.expected, observed: null, transcriptionMs: null, assessmentMs: null, failureReason: null
+      expected: row.expected, observed: null, validationChecks: null,
+      transcriptionMs: null, assessmentMs: null, failureReason: null
     }))
   };
   try {

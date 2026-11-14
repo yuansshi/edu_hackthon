@@ -57,7 +57,7 @@ const ENVELOPE = ['runId', 'sessionId', 'idempotencyKey'];
 const ATTEMPT_ENVELOPE = [...ENVELOPE, 'learnerId', 'assignmentId', 'expectedAssignmentRevision',
   'expectedEvidenceVersion', 'expectedTargetCorrectionRevision'];
 
-export function createSessionState({ config, lesson, now = () => new Date(), newId = randomUUID }) {
+export function createSessionState({ config, lesson, now = () => new Date(), newId = randomUUID, beforeJobStart = () => {} }) {
   config = validateConfig(config);
   lesson = structuredClone(validateLesson(lesson));
   let state;
@@ -496,6 +496,7 @@ export function createSessionState({ config, lesson, now = () => new Date(), new
 
   function startJob(draft, learner, assignment, attempt, kind, turnId = null) {
     requireValue(Object.keys(draft.jobs).length < LIMITS.inFlightProviderCalls, 'PROCESSING_BUSY');
+    beforeJobStart();
     const jobId = id();
     const job = {
       jobId, runId, sessionId: draft.sessionId, learnerId: learner.learnerId, assignmentId: assignment.assignmentId,
@@ -947,6 +948,12 @@ export function createSessionState({ config, lesson, now = () => new Date(), new
     context: () => { requireValue(!closed, 'CONTEXT_CHANGED'); return structuredClone(context()); },
     student: learnerId => { requireValue(!closed, 'CONTEXT_CHANGED'); return student(learnerId); },
     teacher: () => { requireValue(!closed, 'CONTEXT_CHANGED'); return teacher(); },
+    feedback: (learnerId, judgmentId) => {
+      requireValue(!closed, 'CONTEXT_CHANGED');
+      const judgment = validJudgments(learnerFor(state, learnerId)).find(item => item.judgmentId === judgmentId);
+      requireValue(judgment, 'RESOURCE_NOT_FOUND');
+      return judgment.feedback;
+    },
     submit, startTranscription, settleTranscription, startAssessment, settleAssessment, failJob, jobInput,
     confirmReadback, clarify, cancel, next, retract, reset, work, close
   };

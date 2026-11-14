@@ -1,0 +1,98 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {once} from 'node:events';
+import {chromium} from '@playwright/test';
+import {previewFixture} from './preview-fixture.mjs';
+
+// Real browser, static assets and local HTTP; only provider adapters are fixtures.
+test('reviewed Discovery choices start an isolated customized tutoring session', {timeout: 60_000}, async t => {
+  const origin = 'http://127.0.0.1:31992';
+  const fixture = previewFixture(31992);
+  const listening = once(fixture.server, 'listening');
+  fixture.server.listen(31992, '127.0.0.1');
+  await listening;
+  t.after(() => new Promise(resolve => fixture.server.close(resolve)));
+  const browser = await chromium.launch({channel: 'chrome', headless: true});
+  t.after(() => browser.close());
+  const page = await browser.newPage({viewport: {width: 1280, height: 900}});
+  page.setDefaultTimeout(8000);
+  const errors = [];
+  const requests = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('request', request => requests.push(request.url()));
+  const button = name => page.getByRole('button', {name, exact: true});
+  const get = async path => {
+    const response = await fetch(origin + path);
+    assert.equal(response.status, 200);
+    return response.json();
+  };
+  const active = async () => {
+    const context = await get('/api/context');
+    const query = new URLSearchParams({runId: context.runId, sessionId: context.sessionId});
+    return {context, profile: (await get(`/api/teaching-profile?${query}`)).profile,
+      student: await get(`/api/student?${query}&learnerId=A`)};
+  };
+
+  await page.goto(origin + '/discovery/');
+  await button('Let’s discover').click();
+  await page.getByRole('dialog', {name: 'Before your discovery'}).getByRole('button', {name: 'I’m ready to explore', exact: true}).click();
+  await page.getByRole('group', {name: 'Answer choices', exact: true}).getByRole('button').first().click();
+  await button('My discoveries').click();
+  assert.equal(await button('Build my trial routine').isDisabled(), true);
+  assert.equal(await button('Start a new tutoring session').count(), 0);
+  await button('I’ve reviewed this picture').click();
+  await button('Build my trial routine').click();
+  assert.equal(await button('Build my lesson').count(), 0);
+  await button('An example to start').click();
+  await page.getByLabel('Try a focus block', {exact: true}).selectOption('5');
+  await button('Let’s try this arrangement').click();
+  await button('Build my lesson').click();
+  await button('Start a new tutoring session').click();
+  await page.waitForURL(origin + '/?from=discovery');
+  await page.getByRole('textbox', {name: 'Your answer', exact: true}).waitFor();
+  let state = await active();
+  assert.equal(state.profile.learnerId, 'A');
+  assert.equal(state.profile.approach, 'guided');
+  assert.match(state.profile.pacing, /5-minute/);
+  assert.ok(state.profile.supportLabels.includes('An example to start'));
+  await page.getByText(state.profile.pacing, {exact: true}).waitFor();
+  await page.getByRole('log').getByText(/one example and one small step/).waitFor();
+  assert.equal(await button('Voice off').count(), 1);
+  assert.equal(fixture.calls.speech.length, 0);
+  assert.equal(fixture.calls.assess.length, 0);
+  await page.getByRole('textbox', {name: 'Your answer', exact: true}).fill('35');
+  await button('Send message').click();
+  await page.getByRole('log').getByText('Show what each number in your work means. Which step did you use to get your answer?', {exact: true}).waitFor();
+  assert.equal(fixture.calls.assess.length, 1);
+  state = await active();
+  assert.equal(state.student.attempts.length, 1);
+  assert.equal(state.student.targets[0].finding.active, false);
+  const previousSession = state.context.sessionId;
+
+  await page.goto(origin + '/discovery/?demo=combined');
+  await button('Load Leo example').click();
+  await button('Back to my profile').click();
+  await button('Build my trial routine').click();
+  await button('Build my lesson').click();
+  await button('Start a new tutoring session').click();
+  await page.waitForURL(origin + '/?from=discovery');
+  await page.getByRole('textbox', {name: 'Your answer', exact: true}).waitFor();
+  state = await active();
+  assert.notEqual(state.context.sessionId, previousSession);
+  assert.equal(state.profile.learner, 'Leo');
+  assert.equal(state.profile.approach, 'challenge');
+  assert.match(state.profile.pacing, /10-minute/);
+  assert.equal(state.student.attempts.length, 0);
+  assert.equal(await page.locator('.number-groups').count(), 0);
+  await page.getByRole('log').getByText(/Try the problem first and show how you know/).waitFor();
+  assert.equal(await page.getByRole('log').getByText('My answer is 35.', {exact: true}).count(), 0);
+  await page.setViewportSize({width: 390, height: 844});
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  await page.locator('#reset').click();
+  await page.getByRole('group', {name: 'Synthetic student profiles', exact: true}).waitFor();
+  state = await active();
+  assert.equal(state.profile, null);
+  assert.equal(state.student.attempts.length, 0);
+  assert.deepEqual(errors, []);
+  assert.ok(requests.every(url => new URL(url).origin === origin));
+});

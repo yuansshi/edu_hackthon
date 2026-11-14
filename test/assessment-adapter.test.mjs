@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { getEventListeners } from 'node:events';
-import { createLiveAdapter, InterpretationError } from '../src/assessment-adapter.mjs';
+import { createLiveAdapter, createSpeechAdapter, InterpretationError } from '../src/assessment-adapter.mjs';
 import { criteriaFor, validateLesson, classifyCandidate } from '../src/learning.mjs';
 import { createSessionState } from '../src/session-state.mjs';
 import { loadConfig } from '../src/config.mjs';
+import { inspectSyntheticWav, normalizeTranscript, prepareSyntheticAudio, validateProbeCatalog } from '../scripts/live-probe.mjs';
 
 const lesson = validateLesson(JSON.parse(readFileSync(new URL('../content/demo-lesson.json', import.meta.url), 'utf8')));
 const catalog = JSON.parse(readFileSync(new URL('./fixtures/regrouping-cases.json', import.meta.url), 'utf8'));
@@ -515,4 +516,166 @@ test('an invalid provider result leaves learning unchanged and supports only an 
   assert.equal(core.student('A').attempts.length, 2);
   assert.equal(core.student('A').attempts[0].error.code, 'INTERPRETATION_INVALID');
   assert.equal(core.teacher().counts[0].assessed, 1);
+});
+
+function waveChunk(name, bytes) {
+  const result = Buffer.alloc(8 + bytes.length + bytes.length % 2);
+  result.write(name, 0, 'ascii');
+  result.writeUInt32LE(bytes.length, 4);
+  bytes.copy(result, 8);
+  return result;
+}
+
+function pcmFormat(overrides = {}) {
+  const values = { tag: 1, channels: 1, rate: 16_000, byteRate: 32_000, alignment: 2, bits: 16, ...overrides };
+  const bytes = Buffer.alloc(16);
+  bytes.writeUInt16LE(values.tag);
+  bytes.writeUInt16LE(values.channels, 2);
+  bytes.writeUInt32LE(values.rate, 4);
+  bytes.writeUInt32LE(values.byteRate, 8);
+  bytes.writeUInt16LE(values.alignment, 12);
+  bytes.writeUInt16LE(values.bits, 14);
+  return waveChunk('fmt ', bytes);
+}
+
+function wav(...chunks) {
+  const bytes = Buffer.concat([Buffer.alloc(12), ...chunks]);
+  bytes.write('RIFF', 0, 'ascii');
+  bytes.writeUInt32LE(bytes.length - 8, 4);
+  bytes.write('WAVE', 8, 'ascii');
+  return bytes;
+}
+
+test('probe normalization allows only the frozen conservative numeric/punctuation equivalences', () => {
+  assert.equal(normalizeTranscript('Forty-five, FIFTEEN! Twenty-five.'),
+    normalizeTranscript('45 15 25'));
+  assert.equal(normalizeTranscript('Forty-two is three tens and twelve ones.'),
+    normalizeTranscript('42 is 3 tens and 12 ones.'));
+  assert.equal(normalizeTranscript('ＦＯＲＴＹ-ＦＩＶＥ'), '45');
+  assert.equal(normalizeTranscript('someone somewhere one'), 'someone somewhere 1');
+  assert.notEqual(normalizeTranscript('I guessed forty-five.'), normalizeTranscript('I know forty-five.'));
+  assert.notEqual(normalizeTranscript('twelve ones'), normalizeTranscript('two ones'));
+});
+
+test('the frozen six-case probe catalog rejects changed speeches, order, expectations and source templates', () => {
+  const rows = validateProbeCatalog(catalog, lesson);
+  assert.equal(rows.length, 6);
+  assert.deepEqual(rows.map(row => row.caseId), catalog.cases.slice(0, 6).map(row => row.caseId));
+  rows[0].candidate.observedAnswer = 99;
+  assert.equal(validateProbeCatalog(catalog, lesson)[0].candidate.observedAnswer, 45);
+  for (const mutate of [
+    value => { value.cases[0].turns[0].text = 'Changed words.'; },
+    value => { [value.cases[0], value.cases[1]] = [value.cases[1], value.cases[0]]; },
+    value => { value.cases[0].candidate.observedAnswer = 99; },
+    value => { value.cases[0].candidate.sourceEvidence[0].sourceId = '$image'; },
+    value => { value.cases[0].candidate.teachingMoveId = 'finish-session'; },
+    value => { value.cases[0].candidate.exchangeQuantities.after.tens = 3; }
+  ]) {
+    const changed = structuredClone(catalog);
+    mutate(changed);
+    assert.throws(() => validateProbeCatalog(changed, lesson), error =>
+      error.name === 'ProbePrerequisiteError' && error.code === 'probe_prerequisite_failed');
+  }
+});
+
+test('PCM WAV inspection derives duration from bytes and accepts bounded RIFF metadata/padding', () => {
+  const bytes = wav(pcmFormat(), waveChunk('JUNK', Buffer.from([1])), waveChunk('data', Buffer.alloc(32_000)));
+  assert.deepEqual(inspectSyntheticWav(bytes), { byteLength: bytes.length, dataBytes: 32_000, durationMs: 1000 });
+  const sixtySeconds = wav(pcmFormat(), waveChunk('data', Buffer.alloc(1_920_000)));
+  assert.equal(inspectSyntheticWav(sixtySeconds).durationMs, 60_000);
+  const tiny = wav(pcmFormat(), waveChunk('data', Buffer.alloc(2)));
+  const exactCap = wav(pcmFormat(), waveChunk('JUNK', Buffer.alloc(10_485_760 - tiny.length - 8)),
+    waveChunk('data', Buffer.alloc(2)));
+  assert.equal(exactCap.length, 10_485_760);
+  assert.equal(inspectSyntheticWav(exactCap).dataBytes, 2);
+});
+
+test('PCM WAV inspection rejects wrong formats, truncation, duplicate chunks and duration overflow', () => {
+  const fmt = pcmFormat();
+  const data = waveChunk('data', Buffer.alloc(2));
+  const valid = wav(fmt, data);
+  const badSize = Buffer.from(valid);
+  badSize.writeUInt32LE(badSize.length, 4);
+  const badMagic = Buffer.from(valid);
+  badMagic.write('RIFX', 0, 'ascii');
+  const invalid = [
+    Buffer.alloc(0), badSize, badMagic, valid.subarray(0, -1), wav(data, fmt),
+    wav(fmt, fmt, data), wav(fmt, data, data), wav(fmt, waveChunk('data', Buffer.alloc(0))),
+    wav(fmt, waveChunk('data', Buffer.alloc(3))), wav(fmt, waveChunk('data', Buffer.alloc(1_920_002))),
+    wav(fmt, waveChunk('JUNK', Buffer.alloc(10_485_760)), data)
+  ];
+  for (const overrides of [
+    { tag: 3 }, { channels: 2 }, { rate: 44_100 }, { byteRate: 64_000 },
+    { alignment: 4 }, { bits: 8 }
+  ]) invalid.push(wav(pcmFormat(overrides), data));
+  for (const bytes of invalid) {
+    assert.throws(() => inspectSyntheticWav(bytes), error => error.name === 'ProbePrerequisiteError' &&
+      error.code === 'probe_prerequisite_failed' && error.reason === 'invalid_wav');
+  }
+});
+
+test('audio preparation rejects changed inputs and an already-aborted generation before tools or credentials', async () => {
+  const rows = validateProbeCatalog(catalog, lesson);
+  const cases = rows.map(row => ({ caseId: row.caseId, speech: row.turns[0].text }));
+  const previous = process.umask();
+  for (const invalid of [[], cases.slice(0, 5), [...cases].reverse(), cases.map((row, index) =>
+    index === 0 ? { ...row, speech: 'Changed.' } : row)]) {
+    await assert.rejects(prepareSyntheticAudio({ cases: invalid, signal: new AbortController().signal }),
+      error => error.name === 'ProbePrerequisiteError' && error.reason === 'invalid_cases');
+  }
+  const controller = new AbortController();
+  controller.abort();
+  await assert.rejects(prepareSyntheticAudio({ cases, signal: controller.signal }),
+    error => error.name === 'ProbePrerequisiteError' && error.reason === 'cancelled');
+  assert.equal(process.umask(), previous);
+});
+
+test('voice replies use provider speech with Marin, not browser synthesis, and retain no server audio cache', async () => {
+  let body;
+  const adapter = createSpeechAdapter({config, transport: async (url, options) => {
+    assert.equal(url, 'https://api.openai.com/v1/audio/speech');
+    assert.equal(options.redirect, 'error');
+    body = JSON.parse(options.body);
+    return new Response(Buffer.from('ID3test'), {headers: {'content-type': 'audio/mpeg'}});
+  }});
+  const signal = new AbortController().signal;
+  const response = await adapter.speak({text: 'How could you check your answer?', signal});
+  assert.equal(body.model, 'gpt-4o-mini-tts');
+  assert.equal(body.voice, 'marin');
+  assert.equal(body.response_format, 'mp3');
+  assert.equal(body.input, 'How could you check your answer?');
+  assert.equal(response.mimeType, 'audio/mpeg');
+  assert.deepEqual(response.bytes, Buffer.from('ID3test'));
+  assert.equal(getEventListeners(signal, 'abort').length, 0);
+});
+
+test('generated voice rejects wrong MIME, empty audio, excessive bytes and provider failures', async () => {
+  for (const [response, code] of [
+    [new Response('not audio', {headers: {'content-type': 'text/plain'}}), 'invalid'],
+    [new Response(Buffer.alloc(0), {headers: {'content-type': 'audio/mpeg'}}), 'invalid'],
+    [new Response(Buffer.alloc(10_485_761), {headers: {'content-type': 'audio/mpeg'}}), 'invalid'],
+    [new Response('private provider error', {status: 502}), 'unavailable']
+  ]) {
+    const adapter = createSpeechAdapter({config, transport: async () => response});
+    await rejectsCode(adapter.speak({text: 'Show me your thinking.', signal: new AbortController().signal}), code);
+  }
+});
+
+test('generated voice honors deadlines through body consumption and makes no call for aborted input', async () => {
+  const controller = new AbortController();
+  let cancelled = false;
+  const response = new Response(new ReadableStream({
+    pull: () => new Promise(() => {}),
+    cancel() { cancelled = true; }
+  }), {headers: {'content-type': 'audio/mpeg'}});
+  const adapter = createSpeechAdapter({config, transport: async () => response});
+  const rejection = rejectsCode(adapter.speak({text: 'Show me your thinking.', signal: controller.signal}), 'timeout');
+  const timer = setTimeout(() => controller.abort('timeout'), 10);
+  try { await rejection; } finally { clearTimeout(timer); }
+  assert.equal(cancelled, true);
+  assert.equal(getEventListeners(controller.signal, 'abort').length, 0);
+  let calls = 0;
+  const aborted = createSpeechAdapter({config, transport: async () => { calls++; return response; }});
+  await rejectsCode(aborted.speak({text: 'Show me your thinking.', signal: controller.signal}), 'timeout');
+  assert.equal(calls, 0);
 });

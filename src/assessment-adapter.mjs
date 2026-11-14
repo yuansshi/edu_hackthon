@@ -67,7 +67,7 @@ function discard(stream) {
   }
 }
 
-async function boundedJson(response, controller) {
+async function boundedBody(response, controller, {mimeType = 'application/json', maxBytes = RESPONSE_BYTES} = {}) {
   const { signal } = controller;
   let reader;
   let completed = false;
@@ -79,9 +79,9 @@ async function boundedJson(response, controller) {
     if (!response || typeof response.ok !== 'boolean') throw new InterpretationError('invalid');
     if (!response.ok) throw new InterpretationError('unavailable');
     requireValid(response.headers && typeof response.headers.get === 'function');
-    requireValid(response.headers.get('content-type')?.split(';')[0].trim().toLowerCase() === 'application/json');
+    requireValid(response.headers.get('content-type')?.split(';')[0].trim().toLowerCase() === mimeType);
     const length = response.headers.get('content-length');
-    if (length && /^\d+$/.test(length.trim()) && BigInt(length.trim()) > BigInt(RESPONSE_BYTES)) {
+    if (length && /^\d+$/.test(length.trim()) && BigInt(length.trim()) > BigInt(maxBytes)) {
       throw new InterpretationError('invalid');
     }
     requireValid(response.body && typeof response.body.getReader === 'function');
@@ -99,19 +99,12 @@ async function boundedJson(response, controller) {
       if (done) break;
       requireValid(value instanceof Uint8Array);
       size += value.byteLength;
-      if (size > RESPONSE_BYTES) throw new InterpretationError('invalid');
+      if (size > maxBytes) throw new InterpretationError('invalid');
       chunks.push(value);
     }
-    let envelope;
-    try {
-      envelope = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(Buffer.concat(chunks, size)));
-    } catch {
-      throw new InterpretationError('invalid');
-    }
     checkAbort(signal);
-    requireValid(envelope !== null && typeof envelope === 'object' && !Array.isArray(envelope));
     completed = true;
-    return envelope;
+    return Buffer.concat(chunks, size);
   } catch (error) {
     if (error instanceof InterpretationError) throw error;
     if (signal.aborted) throw abortError(signal);
@@ -123,6 +116,20 @@ async function boundedJson(response, controller) {
       if (!readerErrored) discard(reader ?? response?.body);
     }
     reader?.releaseLock();
+  }
+}
+
+async function boundedJson(response, controller) {
+  const bytes = await boundedBody(response, controller);
+  try {
+    const envelope = JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(bytes));
+    requireValid(envelope !== null && typeof envelope === 'object' && !Array.isArray(envelope));
+    checkAbort(controller.signal);
+    return envelope;
+  } catch (error) {
+    const failure = error instanceof InterpretationError ? error : new InterpretationError('invalid');
+    controller.abort(failure);
+    throw failure;
   }
 }
 
@@ -163,14 +170,19 @@ Return only the strict observation schema. Do not prescribe new teaching prose o
 Keep answer correctness, exchange evidence, recognition, and strategy separate. Never infer understanding from a correct number alone.
 For addition, examine whether combining the ones and tens preserves value when ten ones become one ten.
 For subtraction, examine whether a ten is removed when ten ones are added to the starting representation.
-Report before/after tens and ones only when supported by the submitted sources. Derive a canonical before from the operands.
-For an explicit exchange, report its before and after representation. Do not treat a learner's grounded wrong quantities as invalid input.
+Report before/after tens and ones when supported by the submitted sources. Derive a canonical before from the operands:
+for addition combine the original tens and ones; for subtraction use the original minuend's tens and ones.
+For both a valid exchange AND either explicit exchange-error category, include exchangeQuantities with that canonical before and the student's stated after.
+An invalid exchange still has observable quantities. Do not use null merely because the student's trade changes value.
+Use null only when no exchange representation can be established. Do not treat a learner's grounded wrong quantities as invalid input.
 A dropped addition ten is addition_omitted_ten. Adding ones without removing a subtraction ten is subtraction_value_changed.
 A wrong final number alone does not establish either difficulty. Localized arithmetic slips are computation_error.
 A correct carry procedure without explaining its value is procedure_without_exchange_explanation.
 A correct guess is correct_answer_without_reasoning. Accept valid alternative methods without calling them wrong.
 Missing or conflicting evidence is needs_clarification. If work and explanation disagree, set recognitionStatus conflict and seek clarification.
 Cite actual source IDs. Text quotes must be exact nonempty substrings, never normalized, paraphrased, or invented.
+Every cited source must substantiate a mathematical claim. Pure assignment identifiers and administrative labels
+without mathematical reasoning are context, not evidence; do not cite them merely because they name the operation.
 Include quotes covering the observed answer and exchange claims; an entire short explanation is preferable when under 500 characters.
 An image citation uses quote null and describes only visible marks. Written working has its own written_work source, not a turn.
 With no image, neutralReadback is the empty string. With an image, describe only submitted marks and quantities.
@@ -262,6 +274,7 @@ export function createLiveAdapter({ config, transport = globalThis.fetch }) {
         if (controller.signal.reason instanceof InterpretationError) throw controller.signal.reason;
         throw abortError(controller.signal);
       }
+
       throw new InterpretationError('unavailable');
     } finally {
       input.signal.removeEventListener('abort', propagate);
@@ -322,6 +335,47 @@ export function createLiveAdapter({ config, transport = globalThis.fetch }) {
     async cancel({ jobId, reason }) {
       requireValid(typeof jobId === 'string' && UUID.test(jobId) && CANCEL_REASONS.has(reason));
       jobs.get(jobId)?.abort(reason);
+    }
+  };
+}
+
+export function createSpeechAdapter({config, transport = globalThis.fetch}) {
+  config = validateConfig(config);
+  if (config.assessmentMode !== 'live') throw new TypeError('Generated voice requires live configuration.');
+  if (typeof transport !== 'function') throw new TypeError('A provider transport is required.');
+  return {
+    async speak({text, signal}) {
+      requireValid(boundedText(text, 4000, true) && signal instanceof AbortSignal);
+      const controller = new AbortController();
+      const propagate = () => controller.abort(signal.reason);
+      signal.addEventListener('abort', propagate, {once: true});
+      if (signal.aborted) propagate();
+      try {
+        checkAbort(controller.signal);
+        const pending = Promise.resolve().then(() => transport('https://api.openai.com/v1/audio/speech', {
+          method: 'POST', redirect: 'error',
+          headers: {authorization: `Bearer ${config.openaiApiKey}`, 'content-type': 'application/json'},
+          signal: controller.signal,
+          body: JSON.stringify({
+            model: 'gpt-4o-mini-tts', voice: 'marin', response_format: 'mp3', input: text,
+            instructions: 'Speak warmly and clearly as a patient math tutor. Use a natural conversational pace. Never sound rushed or scolding.'
+          })
+        })).then(response => {
+          if (controller.signal.aborted) { discard(response?.body); throw abortError(controller.signal); }
+          return response;
+        });
+        const response = await raceSignal(pending, controller.signal);
+        const bytes = await boundedBody(response, controller, {mimeType: 'audio/mpeg', maxBytes: LIMITS.audioBytes});
+        requireValid(bytes.length > 0);
+        checkAbort(controller.signal);
+        return {bytes, mimeType: 'audio/mpeg'};
+      } catch (error) {
+        if (error instanceof InterpretationError) throw error;
+        if (controller.signal.aborted) throw abortError(controller.signal);
+        throw new InterpretationError('unavailable');
+      } finally {
+        signal.removeEventListener('abort', propagate);
+      }
     }
   };
 }

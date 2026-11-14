@@ -7,6 +7,7 @@ const modules = [
   'src/learning.mjs',
   'src/session-state.mjs',
   'src/assessment-adapter.mjs',
+  'src/teaching-plan.mjs',
   'scripts/check.mjs',
   'scripts/live-probe.mjs',
   'test/png.test.mjs',
@@ -16,7 +17,16 @@ const modules = [
   'src/coach.mjs',
   'public/app.js',
   'test/coach.test.mjs',
-  'test/server.test.mjs'
+  'test/server.test.mjs',
+  'presentation/demo-server.mjs',
+  'presentation/demo/app.js',
+  'presentation/demo/scenario.mjs',
+  'test/preview-fixture.mjs',
+  'test/preview.test.mjs',
+  'test/profile-bridge.test.mjs',
+  'test/two-stage-browser.test.mjs',
+  'test/preview-browser.mjs',
+  'test/preview-browser.test.mjs'
 ];
 
 if (Number(process.versions.node.split('.')[0]) !== 24) {
