@@ -23,6 +23,12 @@
   an actual six-case live pass. Neither one verifies the browser drawing gate.
 - For a demo, verify the documented start command, required configuration, sample
   inputs, expected result, and reset steps on the actual implementation.
+- For the connected Discovery/tutoring flow, build Discovery, run its unit and
+  browser suites, then run `npm run test:combined:browser`. This last check uses
+  an actual local HTTP listener and Chrome with injected provider fixtures;
+  distinguish it from both the fully intercepted preview UI suite and a live
+  provider check. Verify review/confirmation gates, new-session isolation,
+  imported preferences, typed work, and reset cleanup.
 - Report checks that ran and their results. Distinguish successful behavior from
   mocked behavior, skipped checks, and failures caused by missing access.
 - Never claim deployment, live API success, skill discovery, or product readiness

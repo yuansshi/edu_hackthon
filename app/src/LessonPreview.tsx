@@ -399,7 +399,8 @@ export function LessonPreview({ profile, onBack }: LessonPreviewProps) {
       <footer className="lp-disclosure">
         <strong>Lesson interaction preview.</strong> Profile choices shape the plan; math responses
         are prepared and use the existing math rules. Freshness and independence are prepared
-        assumptions. Live AI, speech, and drawing assessment are still pending.
+        assumptions. This walkthrough does not submit work for live assessment. Handwriting
+        assessment remains in development.
       </footer>
     </div>
   );

@@ -17,45 +17,33 @@ with voice in the connected chat preview.”
 
 ## Demo within slide 2 · 1:05–2:05
 
-Choose one rehearsed route; do not try to complete both in the allotted minute.
-
-### Profile-to-lesson route
+Open the local connected route at `/discovery/?demo=combined`.
 
 **Load Maya example → Back to my profile → Build my trial routine → Build my
-lesson.**
+lesson → Start a new tutoring session.**
 
-“For time, Maya starts with prepared answers in the actual Discovery flow.
-Her confirmed choices produce one example and one small step, a five-minute
-trial block, and private feedback. We can inspect why each choice was made.
-This profile-to-lesson connection runs here; its math responses are prepared
-examples.”
+“For time, Maya starts with prepared answers in the real Discovery flow. Her
+confirmed choices produce an example-first opening, a five-minute trial block,
+and private feedback. Starting tutoring carries those choices into Pip's actual
+chat. It starts a new session, so previous practice belongs to its own run.”
 
-Show the plan and open its rationale only if time permits. The Grade 5 synthetic
-learner uses teacher-selected foundational review. The profile does not choose
-math placement. If the network fails, narrate the saved screenshot for the same
-minute rather than troubleshoot on stage.
+Show the imported plan and greeting. Typed work and reviewed voice transcripts
+use the existing assessment path. If time permits, send `45` with a brief
+explanation that ten of the fifteen ones become a new ten. Do not promise live
+provider latency within the minute. Voice is optional and begins off.
 
-### Local live-chat alternative
-
-Choose Maya → **Let's play with numbers** → enter `35` → send → explain the
-missing ten → **A little help**. Show **Teacher evidence** if time permits.
-For a rehearsed voice extension: record → stop → review → send transcript.
-
-“Maya can type an answer or explain aloud. A number alone is not enough, so the
-tutor asks about the reasoning. A student reviews the voice transcript before
-assessment. The same tutor reply appears in chat and uses an AI-generated voice
-when enabled. Helped practice stays separate from an independent check.”
-
-This chat route uses live OpenAI calls and hand-authored sample profiles; it is
-not the static Discovery screenshot. Allow for actual provider response time.
-The full math sequence and voice recording are Q&A extensions if time is short.
+The Grade 5 synthetic learner uses teacher-selected foundational review; the
+profile does not choose math placement. If the local server or network fails,
+narrate the saved screenshot. The public static bundle and the plan's sample
+math walkthrough remain explicitly prepared fallbacks. Longer math/voice
+sequences and Leo's contrasting choices are Q&A extensions.
 
 ## Slide 3 · 2:05–2:50 · Why Our Team
 
 “Our complementary roles connect product thinking with reliable, testable
-teaching logic. A reviewed profile now drives a customized lesson preview, and
-a focused chat preview processes real typed turns and reviewed voice transcripts.
-Next we’ll connect the complete experience, expand lessons, and evaluate whether
+teaching logic. A reviewed profile and confirmed routine now carry into the focused tutor,
+which processes typed work and reviewed voice transcripts.
+Next we’ll add freehand capture and the complete teacher workflow, expand lessons, and evaluate whether
 learners can apply concepts independently. A fresh check is evidence of current
 performance; we have not measured learning gains yet. We’re Smart Pants.
 Thank you.”

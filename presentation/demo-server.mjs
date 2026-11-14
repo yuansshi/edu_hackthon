@@ -1,11 +1,22 @@
 import {createServer} from 'node:http';
-import {readFile} from 'node:fs/promises';
+import {lstat, readFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
 import {loadConfig, LIMITS} from '../src/config.mjs';
 import {createSessionState} from '../src/session-state.mjs';
 import {createLiveAdapter, createSpeechAdapter} from '../src/assessment-adapter.mjs';
 import {profiles} from './demo/scenario.mjs';
+import {parseTeachingHandoff} from '../src/teaching-plan.mjs';
+
+const STATIC_CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'";
+const DISCOVERY_ASSET = /^\/discovery\/assets\/([A-Za-z0-9][A-Za-z0-9._-]{0,170}\.(js|css|woff2))$/;
+const DISCOVERY_TYPES = {js: 'text/javascript; charset=utf-8', css: 'text/css; charset=utf-8', woff2: 'font/woff2'};
+
+function discoveryRoute(pathname) {
+  if (pathname === '/discovery/') return ['../app/dist/index.html', 'text/html; charset=utf-8'];
+  const asset = DISCOVERY_ASSET.exec(pathname);
+  return asset ? [`../app/dist/assets/${asset[1]}`, DISCOVERY_TYPES[asset[2]]] : null;
+}
 
 const routes = new Map([
   ['/', ['./demo/index.html', 'text/html; charset=utf-8']],
@@ -64,6 +75,7 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
   const capacity = () => { if (jobs.size + speechJobs.size >= 2) fail('PROCESSING_BUSY'); };
   const core = createSessionState({config, lesson, beforeJobStart: capacity});
   let shuttingDown = false;
+  let teachingProfile = null;
   const origin = `http://127.0.0.1:${config.port}`;
   const baseHeaders = {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'};
   const json = (response, status, body) => {
@@ -92,8 +104,9 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
     if (type === 'greeting') {
       const profile = profiles.find(item => who === (item.id === 'maya' ? 'A' : 'B'));
       const assignment = snapshot.assignments.find(item => item.assignmentId === id);
-      if (!profile || !assignment) fail('RESOURCE_MISMATCH');
-      return `${profile.invitation} ${assignment.problem.prompt}`;
+      const invitation = teachingProfile?.learnerId === who ? teachingProfile.opening : profile?.invitation;
+      if (!invitation || !assignment) fail('RESOURCE_MISMATCH');
+      return `${invitation} ${assignment.problem.prompt}`;
     }
     fail('INVALID_REQUEST');
   };
@@ -142,12 +155,28 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
       if (request.headers.host !== origin.slice(7)) fail('ORIGIN_REJECTED');
       const url = new URL(request.url, origin);
       if (!url.pathname.startsWith('/api/')) {
-        const route = routes.get(url.pathname);
+        if (url.pathname === '/discovery') {
+          if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405, {...baseHeaders, Allow: 'GET, HEAD'}).end(); return; }
+          response.writeHead(302, {...baseHeaders, Location: `/discovery/${url.search}`}).end(); return;
+        }
+        const discovery = discoveryRoute(url.pathname);
+        const route = discovery ?? routes.get(url.pathname);
         if (!route) { response.writeHead(404, baseHeaders).end('Not found'); return; }
         if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405, {...baseHeaders, Allow: 'GET, HEAD'}).end(); return; }
+        if (discovery) {
+          try {
+            const file = await lstat(new URL(route[0], import.meta.url));
+            if (!file.isFile() || file.size > 4_194_304) { response.writeHead(404, baseHeaders).end('Not found'); return; }
+          } catch (error) {
+            if (error.code !== 'ENOENT' && error.code !== 'ENOTDIR') throw error;
+            response.writeHead(404, {...baseHeaders, 'Content-Type': 'text/plain; charset=utf-8'})
+              .end('Discovery is not built. Run npm run discovery:build, then open /discovery/.');
+            return;
+          }
+        }
         const bytes = await readFile(new URL(route[0], import.meta.url));
         response.writeHead(200, {...baseHeaders, 'Content-Type': route[1],
-          'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"});
+          'Content-Security-Policy': STATIC_CSP});
         response.end(request.method === 'HEAD' ? undefined : bytes);
         return;
       }
@@ -155,6 +184,14 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
         if (url.pathname === '/api/context') {
           if (url.search) fail('INVALID_REQUEST');
           json(response, 200, core.context()); return;
+        }
+        if (url.pathname === '/api/teaching-profile') {
+          query(url, ['runId', 'sessionId']);
+          json(response, 200, {profile: teachingProfile}); return;
+        }
+        if (url.pathname === '/api/greeting') {
+          const body = query(url, ['runId', 'sessionId', 'learnerId', 'assignmentId']);
+          json(response, 200, {text: reply(body.learnerId, 'greeting', body.assignmentId)}); return;
         }
         if (url.pathname === '/api/student') {
           const body = query(url, ['runId', 'sessionId', 'learnerId']);
@@ -201,6 +238,16 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
       catch (error) { if (error.code === 'REQUEST_TOO_LARGE') throw error; fail('INVALID_REQUEST'); }
       if (!body || typeof body !== 'object' || Array.isArray(body)) fail('INVALID_REQUEST');
       if (url.search) fail('INVALID_REQUEST');
+      if (url.pathname === '/api/teaching-profile') {
+        closed(body, ['runId', 'sessionId', 'idempotencyKey', 'expectedSessionRevision', 'handoff']);
+        checkContext(body);
+        const profile = parseTeachingHandoff(body.handoff);
+        const receipt = core.reset({runId: body.runId, sessionId: body.sessionId,
+          idempotencyKey: body.idempotencyKey, expectedSessionRevision: body.expectedSessionRevision});
+        for (const controller of speechJobs) controller.abort('reset');
+        teachingProfile = profile;
+        json(response, 201, {result: {context: receipt.result.context, profile}}); return;
+      }
       if (url.pathname === '/api/attempts') {
         if (body.imagePngBase64 !== null) fail('INVALID_REQUEST');
         json(response, 201, core.submit(body)); return;
@@ -223,6 +270,7 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
       }
       if (url.pathname === '/api/reset') {
         const receipt = core.reset(body);
+        teachingProfile = null;
         for (const controller of speechJobs) controller.abort('reset');
         json(response, 200, receipt); return;
       }
@@ -267,6 +315,7 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
   const shutdown = () => {
     if (shuttingDown) return;
     shuttingDown = true;
+    teachingProfile = null;
     for (const controller of jobs.values()) controller.abort('shutdown');
     for (const controller of speechJobs) controller.abort('shutdown');
     core.close();
@@ -280,16 +329,16 @@ export function createDemoServer({config, lesson, adapter, speechAdapter}) {
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
   try {
-    const config = loadConfig({env: {...process.env, PORT: '3100'}});
+    const config = loadConfig({env: {...process.env, PORT: process.env.PREVIEW_PORT ?? '3100'}});
     const lesson = JSON.parse(await readFile(new URL('../content/demo-lesson.json', import.meta.url), 'utf8'));
     const adapter = createLiveAdapter({config});
     const speechAdapter = createSpeechAdapter({config});
     const server = createDemoServer({config, lesson, adapter, speechAdapter});
     server.on('error', error => {
-      console.error(error.code === 'EADDRINUSE' ? 'Port 3100 is busy.' : 'The preview server could not start.');
+      console.error(error.code === 'EADDRINUSE' ? `Port ${config.port} is busy.` : 'The preview server could not start.');
       process.exitCode = 1;
     });
-    server.listen(3100, '127.0.0.1', () => console.log('Smart Pants chat: http://127.0.0.1:3100 · OpenAI live processing · AI-generated voice'));
+    server.listen(config.port, '127.0.0.1', () => console.log(`Smart Pants chat: http://127.0.0.1:${config.port} · OpenAI live processing · AI-generated voice`));
     for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close());
   } catch {
     console.error('The preview requires a valid project .env credential. No prepared fallback was started.');

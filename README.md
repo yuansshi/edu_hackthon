@@ -20,10 +20,13 @@ The two parts are developed separately. This repository now includes
 profile for grades 5–8. Students review and correct their profile before it
 produces a versioned [teaching handoff](app/INTEGRATION.md). The new combined
 lesson preview consumes that profile and confirmed routine choices to change
-the lesson opening, pacing, supports, and encouragement. Math responses remain
-prepared examples evaluated by the tutoring rules; live voice/drawing assessment
-and full adaptive tutoring remain in development. The current grade 5–8 discovery
-must not be presented as validated for the grade 2 lesson or other age groups.
+the lesson opening, pacing, supports, and encouragement. On the combined local
+server, **Start a new tutoring session** carries those choices into the chat and
+clears the previous tutoring practice. Typed work and reviewed voice transcripts
+then use the existing assessment/core path. The plan's separate sample math
+sequence remains prepared. Freehand assessment, a complete classroom workflow,
+and learning-effectiveness evaluation remain pending. The grade 5–8 Discovery
+pilot is not validated for the grade 2 lesson or other age groups.
 
 ## Smart Pants submission and combined preview
 
@@ -32,12 +35,28 @@ The [three-slide submission kit](presentation/README.md) includes
 notes, and a repeatable 60-second walkthrough. The submission follows the shared
 deck's exact three-slide format and three-minute limit.
 
-Run Discovery below and open `http://127.0.0.1:5173/?demo=combined` for explicit
-synthetic examples. **Load Maya example → Back to my profile → Build my trial
-routine → Build my lesson.** The rehearsal stays in memory and leaves remembered
-Discovery visits untouched. A synthetic Grade 5 learner uses teacher-selected
-foundational math review; the profile does not select ability or math placement.
-See [the combined demo guide](presentation/COMBINED-DEMO.md) for scope and limits.
+Use Node.js 24 and this project's designated `.env` credential. Install both
+locked dependency sets once, then start the combined server:
+
+```sh
+npm ci
+npm ci --prefix app
+npm run preview:combined
+```
+
+Open [Discovery on the combined server](http://127.0.0.1:3100/discovery/?demo=combined).
+**Load Maya example → Back to my profile → Build my trial routine → Build my
+lesson → Start a new tutoring session.** The final action explicitly clears
+previous tutoring practice and opens chat with the chosen opening, pacing,
+supports and encouragement. Voice starts off. Only nickname, grade and confirmed
+arrangement cross the handoff; raw answers and report text do not go to the model.
+
+The synthetic rehearsal stays in memory and leaves remembered Discovery visits
+untouched. A Grade 5 example uses teacher-selected foundational regrouping review;
+the profile does not select ability or math placement. The earlier static public
+preview remains a prepared walkthrough and cannot call this local tutoring API.
+See [the combined demo guide](presentation/COMBINED-DEMO.md) for the fresh-learner
+route, reset steps and verification limits.
 
 ## Run Learning Strength Discovery
 
@@ -72,7 +91,8 @@ playful chat, an answer field on the first task, and normal message sending
 instead of a coach/check-sample button. It connects typed work and reviewed voice
 transcripts to the learning core and OpenAI assessment. Voice mode uses an actual
 OpenAI-generated reply and shows the same words in chat, never browser speech
-synthesis. The sample profiles remain hand-authored.
+synthesis. The combined route above uses the learner's reviewed Discovery
+choices; the standalone chooser also retains two hand-authored sample profiles.
 
 ## Implementation checkpoint
 
@@ -100,8 +120,8 @@ or retries a paid call automatically.
 These modules are not connected to the legacy port-3000 page. The focused
 port-3100 chat preview connects the core, transcription, assessment, and generated
 speech, but it is not the complete normative HTTP API or classroom application.
-Freehand capture, the separate teacher workflow, and partner-profile integration
-remain pending. See the [preview verification notes](presentation/README.md#verification-record)
+The reviewed-profile handoff is connected. Freehand capture and the complete
+separate teacher workflow remain pending. See the [preview verification notes](presentation/README.md#verification-record)
 for the difference between offline fixture tests and actual live checks.
 
 ## Setup
@@ -120,7 +140,8 @@ excluded from Git; use `.env.example` for configuration names.
 
 The tutoring core has no runtime dependencies. Discovery has its own locked
 dependencies under `app/`. Playwright is a development-only dependency
-for the later browser phase; a full tutor browser suite does not exist yet.
+for browser checks; the focused joined-flow test does not establish the full
+normative classroom browser gate.
 
 ## Run the demo
 
@@ -164,6 +185,9 @@ Expected result: “Can you show me what you did with the ones and tens?”
 npm run check
 npm test
 npm run test:preview:browser
+npm run test:combined:browser
+npm run discovery:test
+npm run discovery:test:browser
 npm run test:prototype
 make check
 ```
@@ -179,9 +203,19 @@ agent scaffold. `make app-check` and `make app-test` wrap the core npm commands.
 
 The core tests use synthetic, injected observations. Passing them does not
 establish that a model understands drawings/speech or that the prototype improves
-learning. HTTP and browser wiring follow the adapter/probe checkpoint.
+learning. The complete classroom drawing/browser workflow remains pending.
 
-Current checkpoint verified on 2026-11-13: 141 native Node tests and the offline
+Current joined-flow verification on 2026-11-13: the Discovery production build,
+62 Discovery unit tests, nine Discovery browser tests, 147 Node tests, three
+mocked chat browser tests, one real-HTTP Chrome joined flow, four legacy prototype
+tests, 25 module syntax checks, and scaffold checks passed. The real-HTTP flow
+uses fixture provider adapters and checks a fresh reviewed visit, confirmed
+choices, imported preferences, typed work, a second isolated session, and reset.
+Separately, the connected live OpenAI server assessed one synthetic typed
+regrouping explanation successfully in the browser. This is a bounded live
+observation, not a speech/handwriting accuracy or learning-gain evaluation.
+
+Historical chat checkpoint on 2026-11-13: 141 native Node tests and the offline
 Chrome chat/voice flow passed, 22 JavaScript modules passed syntax checks, and
 the scaffold checker passed. Actual typed chat and generated MP3 reply playback
 also passed on the live port-3100 preview. See the presentation notes for the
@@ -254,8 +288,9 @@ One isolated diagnostic assessment between runs 1 and 2 was not a six-case pass.
 The bounded JSON reports for all four invocations are retained in the session.
 
 These are synthetic cases from one installed voice, not an accuracy estimate.
-Actual browser recordings, handwriting assessment, natural voice output, and
-the student/teacher browser journey are still unverified and unwired.
+That probe does not verify browser recordings or handwriting. The later chat
+checkpoint separately exercised generated speech playback; the complete
+student/teacher classroom browser journey remains pending.
 
 ## Agent setup
 

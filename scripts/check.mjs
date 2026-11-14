@@ -7,6 +7,7 @@ const modules = [
   'src/learning.mjs',
   'src/session-state.mjs',
   'src/assessment-adapter.mjs',
+  'src/teaching-plan.mjs',
   'scripts/check.mjs',
   'scripts/live-probe.mjs',
   'test/png.test.mjs',
@@ -22,6 +23,8 @@ const modules = [
   'presentation/demo/scenario.mjs',
   'test/preview-fixture.mjs',
   'test/preview.test.mjs',
+  'test/profile-bridge.test.mjs',
+  'test/two-stage-browser.test.mjs',
   'test/preview-browser.mjs',
   'test/preview-browser.test.mjs'
 ];

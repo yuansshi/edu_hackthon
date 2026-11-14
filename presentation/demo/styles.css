@@ -50,6 +50,19 @@ p { line-height: 1.5; }
 .tiny, .disclosure, .voice-disclosure { color: var(--muted); font-size: 11px; line-height: 1.5; }
 .tiny { margin: 16px 0; }
 .connection-notice { padding: 12px; border: 1px solid #caa58d; border-radius: 14px; background: #fff0e6; font-size: 13px; }
+.discovery-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-underline-offset: 4px; }
+.small-link { font-size: 12px; }
+.arrangement-banner { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 20px 24px; margin-bottom: 24px; border: 1px solid #bfd09f; border-radius: 22px; background: #edf3dd; }
+.arrangement-label { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+.arrangement-banner h2 { margin: 8px 0 12px; font-size: 24px; letter-spacing: -.5px; }
+.arrangement-banner p { margin: 6px 0; font-size: 13px; }
+.arrangement-banner ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0; }
+.arrangement-banner li { padding: 5px 9px; border: 1px solid #cad8b0; border-radius: 12px; background: #fafbf5; font-size: 11px; }
+.arrangement-banner .arrangement-note { font-size: 11px; color: var(--muted); }
+.arrangement-banner > a { flex: none; }
+.arrangement-banner > div { min-width: 0; overflow-wrap: anywhere; }
+.reconnect-actions { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
+.reconnect-actions a { text-decoration: none; }
 .disclosure { margin: 22px 0 0; }
 .learning-desk { display: grid; grid-template-columns: minmax(250px, .75fr) minmax(380px, 1.25fr); gap: 24px; align-items: start; }
 .puzzle-card { background: #fffef8; border: 1px solid var(--line); padding: 24px; border-radius: 26px; box-shadow: 0 5px 0 #e8ebdc; }
@@ -102,6 +115,7 @@ textarea { min-height: 65px; resize: vertical; font-size: 14px; line-height: 1.4
   .topbar .quiet { margin-left: auto; }
   main { padding: 0 16px 16px; }
   .learning-desk { grid-template-columns: 1fr; gap: 18px; }
+  .arrangement-banner { flex-direction: column; gap: 10px; padding: 18px; }
   .puzzle-card { padding: 18px; }
   .puzzle-equation { margin: 12px 0; font-size: 38px; }
   .number-groups, .puzzle-star { display: none; }

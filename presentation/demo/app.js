@@ -21,10 +21,14 @@ let draftAnswer = '';
 let draftMessage = '';
 let statusText = '';
 let deskOpen = false;
+let importedPlan = null;
+const cameFromDiscovery = new URLSearchParams(location.search).get('from') === 'discovery';
 const escape = value => String(value).replace(/[&<>"']/g, character =>
   ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[character]));
-const profile = () => profiles.find(item => item.id === selected);
-const learnerId = () => selected === 'maya' ? 'A' : 'B';
+const profile = () => importedPlan
+  ? {name: importedPlan.learner, invitation: importedPlan.opening}
+  : profiles.find(item => item.id === selected);
+const learnerId = () => importedPlan?.learnerId ?? (selected === 'maya' ? 'A' : 'B');
 const latestAttempt = () => snapshot?.attempts.find(attempt => attempt.attemptId === snapshot.assignment.activeAttemptId);
 const status = message => {
   statusText = message;
@@ -145,6 +149,7 @@ function blocks(tens, ones) {
 function renderProfiles() {
   stage.innerHTML = `<section class="welcome"><span class="buddy-face" aria-hidden="true">✳</span>
     <h1>A little math.<br>A big adventure.</h1><p>Who’s learning with Pip today?</p>
+    <a class="discovery-link" href="/discovery/">Start with Discovery →</a>
     <div class="profiles" role="group" aria-label="Synthetic student profiles">${profiles.map(p =>
       `<button class="profile-card ${p.id === selected ? 'selected' : ''}" data-action="profile" data-profile="${p.id}" aria-pressed="${p.id === selected}">
       <span class="avatar ${p.color}">${p.initial}</span><strong>${p.name}</strong><small>${escape(p.preference)}</small></button>`).join('')}</div>
@@ -153,16 +158,39 @@ function renderProfiles() {
     <p class="tiny">Two sample profiles, not a real personality assessment.</p></section>`;
 }
 
+function renderConnectionProblem(message) {
+  deskOpen = false;
+  stage.innerHTML = `<section class="load-error" role="alert">
+    <h1>Let’s reconnect your plan.</h1><p>${escape(message)}</p>
+    <div class="reconnect-actions"><button class="primary" data-action="reconnect">Try connecting again</button>
+    <a class="quiet discovery-link" href="/discovery/">Back to Discovery</a></div></section>`;
+}
+
+function renderArrangement() {
+  if (!importedPlan) return '';
+  return `<section class="arrangement-banner" aria-label="Your Discovery teaching plan">
+    <div><span class="arrangement-label">Discovery → your math session</span>
+      <h2>Learning with ${escape(importedPlan.learner)}</h2>
+      <p>${escape(importedPlan.pacing)}</p><p>${escape(importedPlan.encouragement)}</p>
+      ${importedPlan.supportLabels.length ? `<ul aria-label="Your chosen supports">${importedPlan.supportLabels.map(label => `<li>${escape(label)}</li>`).join('')}</ul>` : ''}
+      <p class="arrangement-note">Teacher-selected foundational review. Your choices shape the interaction; they do not choose your math level.</p>
+    </div><a class="quiet discovery-link" href="/discovery/">Start a different plan</a></section>`;
+}
+
 function renderDesk() {
   const problem = snapshot?.assignment.problem ?? {left: 27, right: 18, operation: 'add'};
   const isPractice = !snapshot || snapshot.assignment.purpose === 'practice';
   const offered = (snapshot?.allowedActions ?? []).filter(action =>
     action.effect === 'new_assignment' || ['teach-addition-exchange', 'teach-subtraction-exchange', 'request-teacher-review', 'finish-session'].includes(action.actionId));
-  stage.innerHTML = `<section class="learning-desk">
+  const visualWasRequested = snapshot?.actions.some(action =>
+    action.assignmentId === snapshot.assignment.assignmentId && action.visual);
+  const showVisual = isPractice && (importedPlan?.approach !== 'challenge' || visualWasRequested);
+  stage.innerHTML = `${renderArrangement()}<section class="learning-desk">
     <aside class="puzzle-card"><div class="puzzle-label"><span>Number adventure</span><span class="board-chip">${isPractice ? 'Practice' : 'On your own'}</span></div>
       <h1 class="puzzle-equation">${problem.left} ${problem.operation === 'add' ? '+' : '−'} ${problem.right} = ?</h1>
       <p>What do you think? Tell Pip your answer and how you got there.</p>
-      ${isPractice ? `<div class="number-groups">${blocks(Math.floor(problem.left / 10), problem.left % 10)}<span>${problem.operation === 'add' ? '+' : '−'}</span>${blocks(Math.floor(problem.right / 10), problem.right % 10)}</div>` : '<div class="puzzle-star" aria-hidden="true">✦</div>'}
+      ${showVisual ? `<div class="number-groups">${blocks(Math.floor(problem.left / 10), problem.left % 10)}<span>${problem.operation === 'add' ? '+' : '−'}</span>${blocks(Math.floor(problem.right / 10), problem.right % 10)}</div>` : '<div class="puzzle-star" aria-hidden="true">✦</div>'}
+      ${!importedPlan ? '<a class="discovery-link small-link" href="/discovery/">Choose a plan in Discovery →</a>' : ''}
       <div class="desk-actions">${offered.map(action => `<button class="${action.effect === 'new_assignment' ? 'primary' : 'quiet'}" data-action="next" data-id="${action.actionId}">
         ${action.effect === 'new_assignment' ? 'Next puzzle ↗' : action.actionId.startsWith('teach-') ? 'A little help' : action.actionId === 'finish-session' ? 'Finish for now' : 'Ask my teacher'}</button>`).join('')}</div>
       <details class="evidence-details"><summary>Teacher evidence</summary>${snapshot ? snapshot.targets.map(target =>
@@ -426,14 +454,18 @@ async function start() {
   busy = true;
   try {
     if (context) await refresh();
+    const greeting = context ? await request(`/api/greeting?${new URLSearchParams({
+      runId: context.runId, sessionId: context.sessionId, learnerId: learnerId(),
+      assignmentId: snapshot.assignment.assignmentId
+    })}`) : {text: `${profile().invitation} Try 27 + 18. Draw or write how you know.`};
     deskOpen = true;
     messages.length = 0;
-    addMessage('tutor', `${profile().invitation} ${snapshot?.assignment.problem.prompt ?? 'Try 27 + 18. Draw or write how you know.'}`,
+    addMessage('tutor', greeting.text,
       context ? {speech: {type: 'greeting', id: snapshot.assignment.assignmentId}} : {});
     if (!context) status('The server needs a restart before messages and voice can work. This is a layout preview only.');
     render();
     document.querySelector('#answer').focus();
-  } catch (error) { stage.textContent = error.message; }
+  } catch (error) { renderConnectionProblem(error.message); }
   finally {
     busy = false;
     if (deskOpen) {
@@ -450,10 +482,12 @@ async function reset() {
   releaseCapture();
   stopPlayback();
   busy = false;
+  voice = false;
   pendingTranscript = null;
   try {
     if (!context) {
       deskOpen = false;
+      importedPlan = null;
       draftAnswer = '';
       draftMessage = '';
       messages.length = 0;
@@ -464,6 +498,8 @@ async function reset() {
     const result = await request('/api/reset', {method: 'POST',
       body: {runId: current.runId, sessionId: current.sessionId, idempotencyKey: crypto.randomUUID(), expectedSessionRevision: current.revision}});
     context = result.result.context;
+    importedPlan = null;
+    voice = false;
     snapshot = null;
     deskOpen = false;
     draftAnswer = '';
@@ -489,6 +525,7 @@ stage.addEventListener('click', event => {
   const button = event.target.closest('button[data-action]');
   if (!button) return;
   if (button.dataset.action === 'profile') { selected = button.dataset.profile; render(); }
+  if (button.dataset.action === 'reconnect') void connect();
   if (button.dataset.action === 'start') void start();
   if (button.dataset.action === 'record') void record();
   if (button.dataset.action === 'next') void action(button.dataset.id);
@@ -514,13 +551,32 @@ window.addEventListener('pagehide', () => {
   stopPlayback();
 });
 
-try {
-  context = await request('/api/context');
+async function connect() {
+  importedPlan = null;
+  snapshot = null;
+  try {
+    context = await request('/api/context');
+  } catch {
+    context = null;
+    document.querySelector('.disclosure').textContent = 'Layout preview only. The running server is not connected to the new chat API. No assessment or voice response is simulated.';
+    if (cameFromDiscovery) renderConnectionProblem('Your tutoring session is unavailable. Reopen Discovery on the running tutoring server.');
+    else render();
+    return;
+  }
+  try {
+    const query = new URLSearchParams({runId: context.runId, sessionId: context.sessionId});
+    const result = await request(`/api/teaching-profile?${query}`);
+    if (!Object.hasOwn(result, 'profile')) throw new Error('Your teaching plan could not be loaded.');
+    importedPlan = result.profile;
+  } catch {
+    renderConnectionProblem('Your teaching plan could not be loaded. Try connecting again or review your choices in Discovery.');
+    return;
+  }
   document.querySelector('.disclosure').textContent =
-    'Synthetic student profiles. Current-run math evidence only, not lasting mastery. Typed messages and voice transcripts stay in this run; recordings are released after transcription.';
-  render();
-} catch {
-  context = null;
-  document.querySelector('.disclosure').textContent = 'Layout preview only. The running server is not connected to the new chat API. No assessment or voice response is simulated.';
-  render();
+    'Use synthetic or adult role-play data only. Current-run math evidence is not lasting mastery. Typed messages and voice transcripts stay in this run; recordings are released after transcription.';
+  if (importedPlan) await start();
+  else if (cameFromDiscovery) renderConnectionProblem('This tutoring session no longer has a Discovery plan. Review and confirm your choices to start a new session.');
+  else render();
 }
+
+await connect();

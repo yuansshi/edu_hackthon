@@ -1,4 +1,5 @@
 import type { TeachingProfile } from './handoff';
+import { describeTeachingChoices } from '../../src/teaching-plan.mjs';
 
 export type LessonDesign = {
   learner: string;
@@ -10,15 +11,6 @@ export type LessonDesign = {
   rationale: { title: string; detail: string; sourceIds: string[] }[];
   sourceRevision: number;
 };
-
-const supportedArrangements = [
-  'Visible steps',
-  'An example to start',
-  'Hints when I ask',
-  'Quiet thinking time',
-  'A quick check-in',
-  'A first-step plan',
-];
 
 /** Consumes an internal reviewed handoff; external JSON needs its own parser. */
 export function designLesson(profile: TeachingProfile): LessonDesign {
@@ -47,29 +39,7 @@ export function designLesson(profile: TeachingProfile): LessonDesign {
     };
   }
 
-  const choices = routine.choices;
-  const supportLabels = supportedArrangements.filter((label) => choices.supports.includes(label));
-  const asksForGuidance = supportLabels.some((label) =>
-    ['Visible steps', 'An example to start', 'A first-step plan'].includes(label),
-  );
-  const approach = asksForGuidance
-    ? 'guided'
-    : choices.challenge === 'stretch'
-      ? 'challenge'
-      : 'balanced';
-  const opening =
-    approach === 'guided'
-      ? 'We can begin with one example and one small step. Then you can try a new problem.'
-      : approach === 'challenge'
-        ? 'Try the problem first and show how you know. You can ask for a hint or a check-in.'
-        : 'Choose whether to try first or see an example. We can change the approach together.';
-  const encouragement = {
-    progress: 'Notice the step you explained or corrected.',
-    private: 'Keep feedback private and kind.',
-    points:
-      'Use a small progress marker after a completed step; it is separate from the math evidence.',
-    none: 'Use a calm, factual check without extra praise.',
-  }[choices.encouragement];
+  const description = describeTeachingChoices(routine.choices);
   const profileContextIds = profile.dimensions
     .filter((dimension) => !dimension.corrections.some((item) => item.status === 'disagree'))
     .flatMap((dimension) => dimension.studentReports.map((item) => item.sourceId))
@@ -77,11 +47,7 @@ export function designLesson(profile: TeachingProfile): LessonDesign {
 
   return {
     ...base,
-    approach,
-    opening,
-    encouragement,
-    pacing: `Try a ${choices.focus}-minute work block, then choose a ${choices.pause}-minute pause. These are your trial choices.`,
-    supportLabels,
+    ...description,
     rationale: [
       {
         title: 'Your confirmed choice',

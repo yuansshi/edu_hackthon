@@ -6,9 +6,11 @@ the current session and `buildReport`. It does not change the session, call a
 provider, send a file, or write storage.
 
 This grades 5–8 pilot is additive to the repository's grades 1–6 math work.
-A bounded client preview now consumes the reviewed profile and confirmed routine
-to tailor an example lesson interaction. It does not connect the complete live
-tutor or change the existing Grade 2 prototype's math rules. The pilot has not
+A bounded client preview consumes the reviewed profile and confirmed routine
+to tailor a lesson interaction. The combined local server also accepts a minimal
+projection of those confirmed choices and opens the existing chat/voice tutor.
+This connection does not change the Grade 2 lesson's math rules or implement the
+complete classroom workflow. The pilot has not
 been validated as an assessment, including within grades 5–8. Use outside grades
 5–8 is not validated.
 
@@ -92,8 +94,9 @@ Consumers can render `studentReports` and `observations` beside their source IDs
 preserve `unknowns` and `corrections`, and offer the suggested arrangements for
 discussion. An external JSON reader needs runtime validation of this exact
 version and field types. A TypeScript type alone does not validate a downloaded
-file. The current combined preview consumes the internal typed snapshot; it is
-not an external JSON import endpoint.
+file. The lesson preview consumes the internal typed snapshot. The tutoring bridge
+sends the smaller, runtime-validated projection described below; it does not
+accept a full downloaded Discovery report as a tutor instruction.
 
 ## Current combined preview consumer
 
@@ -116,9 +119,12 @@ that a personality or learning style predicts the most effective lesson.
 
 The example lesson uses the existing mathematical admission, classification, and
 finding reducer with prepared response evidence. The preview labels those
-responses and its independence assumptions. It does not assess arbitrary speech
-or drawings, call a model, mutate the tutoring server's session records, or prove
-learning gains. Full live tutoring remains in development.
+responses and its independence assumptions. That sample sequence makes no model
+calls. Separately, the explicit **Start a new tutoring session** action on the
+combined server carries chosen interaction settings into chat. Submitted typed
+work or reviewed voice transcripts then follow the existing live-capable tutoring
+path. Freehand assessment and the complete classroom workflow remain pending;
+neither route proves learning gains.
 
 The rehearsal examples are synthetic Grade 5 learners. Regrouping is a
 teacher-selected foundational review using the existing lesson content. The
@@ -141,6 +147,38 @@ are defined in the [current design](../design_draft.md#detailed-implementation-p
 and its five normative contracts. This export is not an API operation in those
 contracts and cannot mark a math finding assessed or cleared.
 
+## Local tutoring bridge
+
+Run `npm run preview:combined` from the repository root after installing both
+root and `app/` dependencies. This builds Discovery and serves it at
+`http://127.0.0.1:3100/discovery/` beside the existing chat/API. Live operation
+requires only the project's designated `.env` credential. Standalone Vite and
+the earlier static public build do not connect to the local tutoring API.
+
+`createTutorHandoff` in `src/tutorSession.ts` requires current review and routine
+confirmation and creates `smart-pants-tutoring/v1`. Its fields are
+`schemaVersion`, `sourceSchemaVersion`, `revision`, `reviewed`, `learner`, and
+`routine`. The source schema remains `learning-strength-discovery/v1`.
+Only nickname, grade, and the confirmed arrangement cross this boundary; no
+question answers, dimension reports, corrections, or narrative suggestions are
+sent to the tutor or its model. Supports are limited to the known support labels.
+
+`POST /api/teaching-profile` is a same-origin, context-bound preview operation.
+The request includes the current run/session IDs, idempotency identity, expected
+session revision, and the handoff. The server validates exact keys, versions,
+review/confirmation equality, allowed choices and bounds before admitting it.
+Starting is explicit because it resets previous tutoring practice, cancels active
+work, and binds the new plan to the new session. Stale contexts or session
+revisions are rejected. `GET /api/teaching-profile` retrieves the active plan;
+reset/restart removes it. These are focused preview endpoints, not additions to
+the frozen normative classroom API contract.
+
+`src/teaching-plan.mjs` supplies the same authored opening, pacing, supports and
+encouragement to the lesson preview and tutoring greeting. The profile never sets
+math ability, correctness, assistance status, freshness or qualification. It is
+not included as free-form model instructions. Voice starts off, and microphone
+transcripts still require review before assessment.
+
 ## Local verification
 
 From `app/`, `npm test -- src/handoff.test.ts` checks review admission, stale
@@ -151,4 +189,6 @@ data and make no provider calls. For the consumer, also run the lesson-design an
 rehearsal-session tests, the build, and the browser suite. Exercise stale review,
 changed routine confirmation, plan rationale, prepared math evidence, and both
 example arrangements. Record actual results after running them. These checks do
-not replace the repository's full browser and live multimodal gates.
+not replace the repository's full browser and live multimodal gates. The joined
+`npm run test:combined:browser` journey uses real local HTTP and Chrome with a
+fixture provider; passing it establishes the handoff path, not live AI quality.

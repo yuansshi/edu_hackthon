@@ -19,7 +19,32 @@ Yuan authorized [his LinkedIn](https://www.linkedin.com/in/yuan-shi-123a1b1a/).
 The saved editable presentation is available in the Codex chat. The older
 `build-deck.mjs` is an earlier pitch source, not the official three-slide deck.
 
-## Profile-to-lesson walkthrough
+## Start the connected Discovery-to-tutor demo
+
+Use Node.js 24 and this project's designated `.env` credential. Install both
+locked dependency sets once, then run:
+
+```sh
+npm ci
+npm ci --prefix app
+npm run preview:combined
+```
+
+Open [Discovery on the combined server](http://127.0.0.1:3100/discovery/?demo=combined).
+**Load Maya example → Back to my profile → Build my trial routine → Build my
+lesson → Start a new tutoring session.** The final action explicitly clears
+previous tutoring practice and opens chat with the chosen arrangement. Voice
+starts off. For a fresh visit omit the rehearsal query, answer prompts, and
+review/confirm the current result yourself.
+
+Only nickname, grade and confirmed routine choices cross the minimal versioned
+handoff. Raw answers and report text do not go to the tutor/model. The same
+opening, pacing, supports and encouragement appear in the plan and chat. This
+local connection is live-capable; a mode label distinguishes fixture processing
+from actual OpenAI calls. See the [combined guide](COMBINED-DEMO.md) for the
+60-second route and reset behavior.
+
+## Earlier static profile-to-lesson walkthrough
 
 [Open the static combined preview](https://instantly-henry-reforms-notebook.trycloudflare.com/?demo=combined).
 This temporary URL depends on its static server, tunnel, laptop, and network.
@@ -55,8 +80,9 @@ node --use-system-ca presentation/demo-server.mjs
 Open [the local chat](http://127.0.0.1:3100). It runs separately from `npm start`
 and uses OpenAI for transcription, text assessment and generated voice. Do not
 overwrite an existing `.env`; [.env.example](../.env.example) documents names.
-The original chat entry point uses hand-authored Maya/Leo profiles. Its live
-processing is separate from the static profile-to-lesson preview described above.
+The standalone chat chooser retains hand-authored Maya/Leo samples. The connected
+Discovery route above instead uses the learner's reviewed, confirmed arrangement.
+The earlier public static preview remains separate and cannot call the local API.
 
 Use synthetic material or adult role-play only:
 
@@ -93,8 +119,9 @@ with `marin` in this slice.
 | 2:05–2:50 | Slide 3: team fit, implemented behavior and next work |
 | 2:50–3:00 | Transition buffer |
 
-Choose either the short profile-to-lesson walkthrough or a rehearsed chat
-sequence. Live chat makes paid calls and depends on actual provider latency;
+Use the connected Discovery-to-chat route for the combined story. Keep sending
+work and recording for Q&A unless rehearsed within the time limit. Live chat
+makes paid calls and depends on actual provider latency;
 the scripted 60-second timing is not a measured live guarantee. Keep the saved
 profile-to-lesson screenshot labelled accurately rather than presenting it as
 an image of live chat.
@@ -107,6 +134,18 @@ mastery or measured learning gains. Freehand capture, a complete separate teache
 workflow, teacher retractions, and the full normative HTTP API remain pending.
 
 ## Verification record
+
+Current joined-flow verification on 2026-11-13: the Discovery production build,
+62 Discovery unit tests, nine Discovery browser tests, 147 Node tests, three
+mocked chat browser tests, one real-HTTP Chrome joined flow, four legacy prototype
+tests, 25 module syntax checks, and scaffold checks passed. The real-HTTP flow
+uses fixture provider adapters and checks a fresh reviewed visit, confirmed
+choices, imported preferences, typed work, a second isolated session, and reset.
+Separately, the connected live OpenAI server assessed one synthetic typed
+regrouping explanation successfully in the browser. This is a bounded live
+observation, not a speech/handwriting accuracy or learning-gain evaluation.
+
+The records below describe earlier checkpoints.
 
 The profile-to-lesson publication passed the Discovery build, 57 unit tests,
 nine browser tests, 127 tutoring core tests, four prototype tests, syntax checks,

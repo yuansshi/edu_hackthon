@@ -20,3 +20,10 @@ Lighting/mood: warm, calm, intelligent, playful.
 Color palette: forest green #163C32, chartreuse #DDF174, coral #F58B72, tiny cream details.
 Constraints: genuinely transparent background; no words, numbers, letters, labels, logos, watermarks or text. No humans. No shiny 3D plastic rendering, no stock robot, no gradients, no busy detail. Keep the trousers clearly recognizable as trousers rather than a person wearing them.
 ```
+
+## Connected tutor capture
+
+`connected-tutor-live.jpg` is an actual local browser screenshot from the joined
+Discovery → confirmed arrangement → tutor flow on 2026-11-13. It shows synthetic
+Maya work and a successful live OpenAI assessment. The image contains no real
+student records or credentials. Voice-on UI alone is not a speech-quality test.
